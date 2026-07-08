@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balcani cu Aris — Scrapbook 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&family=Courier+Prime:wght@400;700&display=swap');
+  :root {
+    --bg: #ece1c8; --paper: #fffdf7; --paper2: #f7f0e3;
+    --ink: #3a3226; --ink-muted: #6a5f48; --ink-faint: #a8996f;
+    --border: #d8c9a3; --dash: #c9b78c;
+    --red: #a13d2e; --navy: #2d4159; --olive: #5c6b3f; --rust: #a1592e; --plum: #6b4a5c; --teal: #3d6b63;
+    --tape-blue: #a9c9d6; --tape-mustard: #dcb254; --tape-rose: #cf9a95; --tape-sage: #a3b98a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Patrick Hand', cursive; font-size: 14px; line-height: 1.6; }
+
+  .tabs { display: flex; gap: 6px; padding: 14px 24px 0; background: var(--bg); border-bottom: 2px solid var(--ink); position: sticky; top: 0; z-index: 100; }
+  .tab { padding: 10px 22px; cursor: pointer; font-family: 'Caveat', cursive; font-weight: 700; font-size: 18px; color: var(--ink-muted); background: var(--paper2); border: 1px solid var(--dash); border-bottom: none; border-radius: 8px 8px 0 0; transition: all 0.15s; transform: translateY(4px); }
+  .tab:hover { color: var(--ink); }
+  .tab.active { color: var(--ink); background: var(--paper); transform: translateY(0); box-shadow: 0 -2px 6px rgba(0,0,0,0.06); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 30px 26px 60px; }
+
+  .tape { position: absolute; height: 24px; opacity: 0.85; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+  .tape.blue { background: var(--tape-blue); }
+  .tape.mustard { background: var(--tape-mustard); }
+  .tape.rose { background: var(--tape-rose); }
+  .tape.sage { background: var(--tape-sage); }
+
+  .j-header { position: relative; padding: 14px 6px 34px; }
+  .j-header::after { content: ""; display: table; clear: both; }
+  .polaroid { position: relative; width: 180px; height: 130px; background: linear-gradient(135deg,#c9d9c2,#e8d3a0); box-shadow: 0 4px 12px rgba(0,0,0,0.2); float: left; margin: 0 26px 16px 0; }
+  .polaroid .tape { top: -10px; left: 28px; width: 60px; transform: rotate(-6deg); }
+  .polaroid .cap { position: absolute; bottom: -24px; width: 100%; text-align: center; font-family: 'Caveat', cursive; font-size: 16px; color: var(--ink); }
+  .j-title { font-family: 'Caveat', cursive; font-weight: 700; font-size: 46px; color: var(--ink); padding-top: 10px; }
+  .j-sub { font-family: 'Patrick Hand', cursive; font-size: 16px; color: var(--ink-muted); margin-top: 2px; }
+  .j-note { display: inline-block; font-family: 'Caveat', cursive; font-size: 19px; color: var(--rust); margin-top: 12px; transform: rotate(-1deg); background: var(--tape-mustard); padding: 3px 14px; border-radius: 3px; }
+
+  .section-title { font-family: 'Caveat', cursive; font-weight: 700; font-size: 26px; color: var(--ink); margin: 30px 0 16px; padding-bottom: 8px; border-bottom: 1px dashed var(--dash); }
+
+  #map { width: 100%; height: 560px; border: 3px solid var(--paper); outline: 1px solid var(--dash); margin-bottom: 14px; }
+  .map-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 26px; font-family: 'Patrick Hand', cursive; font-size: 13px; color: var(--ink-muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+
+  .stat-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 30px; }
+  .stat-tag { background: var(--paper); border: 1px dashed var(--dash); border-radius: 10px; padding: 10px 16px; text-align: center; min-width: 100px; }
+  .stat-tag .v { font-family: 'Caveat', cursive; font-weight: 700; font-size: 24px; color: var(--rust); }
+  .stat-tag .l { font-family: 'Patrick Hand', cursive; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .timeline { display: flex; flex-direction: column; gap: 40px; }
+  .sb-card { background: var(--paper); border-radius: 3px; padding: 24px 26px 26px; position: relative; box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+  .sb-card:nth-child(odd) { transform: rotate(-0.6deg); }
+  .sb-card:nth-child(even) { transform: rotate(0.5deg); }
+  .corner-note { position: absolute; top: -16px; right: 20px; background: var(--paper); border: 1px dashed var(--dash); border-radius: 8px; padding: 6px 14px; font-family: 'Patrick Hand', cursive; font-size: 12px; color: var(--ink-muted); transform: rotate(3deg); box-shadow: 0 2px 6px rgba(0,0,0,0.12); text-align: center; }
+  .sb-body { display: grid; grid-template-columns: 180px 1fr; gap: 24px; }
+  .sb-body.simple { grid-template-columns: 1fr; }
+  .sb-photo { width: 100%; height: 128px; box-shadow: 0 3px 9px rgba(0,0,0,0.2); }
+  .sb-cap { margin-top: 8px; font-family: 'Caveat', cursive; font-size: 15px; text-align: center; color: var(--ink); }
+  .sb-city { font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; color: var(--ink); }
+  .sb-sub { font-family: 'Courier Prime', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-top: 2px; }
+  .sb-hotel { font-family: 'Courier Prime', monospace; font-size: 12px; color: var(--ink-muted); margin-top: 10px; }
+  .sb-stickers { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .sticker { border-radius: 14px; padding: 4px 12px; font-family: 'Patrick Hand', cursive; font-size: 11.5px; color: var(--ink); }
+  .sticker.a { background: var(--tape-mustard); transform: rotate(-1deg); }
+  .sticker.b { background: var(--tape-sage); transform: rotate(1deg); }
+  .sticker.c { background: var(--tape-rose); transform: rotate(-0.5deg); }
+  .sb-note { margin-top: 12px; font-family: 'Caveat', cursive; font-size: 17px; color: var(--rust); transform: rotate(-0.3deg); }
+  .sb-note b { font-weight: 700; }
+  .sb-hosp { margin-top: 10px; font-family: 'Patrick Hand', cursive; font-size: 12.5px; color: var(--ink); background: rgba(61,107,99,0.14); border-radius: 6px; padding: 8px 12px; transform: rotate(0.3deg); }
+  .sb-intel { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .sb-intel .chip { border-radius: 14px; padding: 6px 13px; font-family: 'Patrick Hand', cursive; font-size: 12px; color: var(--ink); }
+  .sb-intel .chip.a { background: rgba(219,176,84,0.5); }
+  .sb-intel .chip.b { background: rgba(163,185,138,0.55); }
+  .sb-intel .chip.c { background: rgba(201,138,134,0.5); }
+  .sb-intel .chip.d { background: rgba(169,201,214,0.6); }
+
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 30px; }
+  .check-page { background: var(--paper); border-radius: 3px; padding: 20px 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); position: relative; }
+  .check-page:nth-child(odd) { transform: rotate(-0.6deg); }
+  .check-page:nth-child(even) { transform: rotate(0.5deg); }
+  .check-page h3 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 21px; color: var(--ink); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--dash); }
+  label.chk { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-family: 'Patrick Hand', cursive; font-size: 14px; color: var(--ink); padding: 6px 0; }
+  input[type=checkbox].hand { appearance: none; -webkit-appearance: none; width: 19px; height: 19px; border: 2px solid var(--ink); border-radius: 4px; position: relative; flex-shrink: 0; background: var(--paper2); cursor: pointer; top: 1px; }
+  input[type=checkbox].hand:checked { background: var(--olive); border-color: var(--olive); }
+  input[type=checkbox].hand:checked::after { content: "✓"; position: absolute; left: 3px; top: -4px; color: #fff; font-size: 15px; font-family: Georgia, serif; font-weight: 700; }
+  label.chk span { transition: color 0.15s; }
+  label.chk input:checked ~ span { text-decoration: line-through; color: var(--ink-faint); }
+
+  .tab-toggle { margin-left: auto; align-self: center; cursor: pointer; font-size: 18px; color: var(--ink-faint); padding: 6px 10px; user-select: none; }
+  .tab-toggle:hover { color: var(--ink-muted); }
+
+  .subtabs { display: flex; gap: 8px; margin: 4px 0 22px; flex-wrap: wrap; }
+  .subtab { padding: 7px 18px; cursor: pointer; font-family: 'Caveat', cursive; font-weight: 700; font-size: 16px; color: var(--ink-muted); background: var(--paper2); border: 1px solid var(--dash); border-radius: 16px; }
+  .subtab.active { color: #fff; background: var(--rust); border-color: var(--rust); }
+  .subtab-content { display: none; }
+  .subtab-content.active { display: block; }
+
+  .plan-p { font-family: 'Patrick Hand', cursive; font-size: 13.5px; color: var(--ink-muted); margin: 6px 0 14px; max-width: 760px; }
+  .plan-h3 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 21px; color: var(--ink); margin: 22px 0 10px; }
+  .phase-title { font-family: 'Caveat', cursive; font-weight: 700; font-size: 20px; color: var(--ink); margin: 24px 0 10px; display: inline-block; border-bottom: 2px solid var(--rust); padding-bottom: 3px; }
+  .quote-box { background: var(--tape-mustard); border-radius: 6px; padding: 14px 18px; font-family: 'Caveat', cursive; font-size: 19px; color: var(--ink); margin: 10px 0 18px; transform: rotate(-0.3deg); max-width: 700px; }
+  .quote-box .en { display: block; font-size: 15px; color: var(--ink-muted); margin-top: 4px; }
+  .plan-list { margin: 6px 0 16px 20px; font-family: 'Patrick Hand', cursive; font-size: 13.5px; color: var(--ink); }
+  .plan-list li { margin-bottom: 7px; }
+  .plan-table { width: 100%; border-collapse: collapse; margin: 10px 0 22px; font-family: 'Patrick Hand', cursive; font-size: 12.5px; background: var(--paper); }
+  .plan-table th, .plan-table td { border: 1px solid var(--dash); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .plan-table th { background: var(--paper2); font-family: 'Caveat', cursive; font-size: 15px; font-weight: 700; }
+
+  @media (max-width: 900px) {
+    .sb-body { grid-template-columns: 1fr; }
+    .check-grid { grid-template-columns: 1fr; }
+    .plan-table { font-size: 11px; }
+  }
+  @media (max-width: 600px) {
+    .j-title { font-size: 32px; } main { padding: 18px; }
+    .polaroid { float: none; margin: 0 0 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="tabs">
+  <div class="tab active" data-tab="map" onclick="switchTab('map', this)">Harta traseului</div>
+  <div class="tab" data-tab="itinerary" onclick="switchTab('itinerary', this)">Jurnalul opririlor</div>
+  <div class="tab" data-tab="checklist" onclick="switchTab('checklist', this)">De bifat înainte</div>
+  <div class="tab" id="tab-btn-tiktok" data-tab="tiktok" onclick="switchTab('tiktok', this)">Plan TikTok</div>
+  <div class="tab-toggle" id="tiktokToggle" onclick="toggleTiktokTab()" title="ascunde/arată tabul Plan TikTok">⋯</div>
+</div>
+
+<main>
+  <div class="j-header">
+    <div class="polaroid">
+      <div class="tape blue"></div>
+      <div class="cap">plecarea, 5 sept</div>
+    </div>
+    <div class="j-title">Balcani cu Aris</div>
+    <div class="j-sub">26 nopți · 9 țări · 5 sept – 1 oct 2026 · un bebeluș neînfricat</div>
+    <div class="j-note">plecare din București, 5 septembrie 2026</div>
+  </div>
+
+  <!-- MAP TAB -->
+  <div id="tab-map" class="tab-content active">
+    <p class="section-title">traseul complet, desenat cu cerneală</p>
+    <div id="map"></div>
+    <div class="map-legend">
+      <span><span class="legend-dot" style="background:#a13d2e"></span>acasă (plecare/sosire)</span>
+      <span><span class="legend-dot" style="background:#a1592e"></span>oprire principală</span>
+      <span><span class="legend-dot" style="background:#2d4159"></span>pauză de o noapte</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat-tag"><div class="v">~2.990 km</div><div class="l">distanță</div></div>
+      <div class="stat-tag"><div class="v">~46h</div><div class="l">condus</div></div>
+      <div class="stat-tag"><div class="v">26</div><div class="l">nopți</div></div>
+      <div class="stat-tag"><div class="v">10.740 lei</div><div class="l">cazare rezervată</div></div>
+      <div class="stat-tag"><div class="v">~50-70€</div><div class="l">taxe de drum</div></div>
+      <div class="stat-tag"><div class="v">112</div><div class="l">urgențe, orice țară</div></div>
+    </div>
+  </div>
+
+  <!-- ITINERARY TAB -->
+  <div id="tab-itinerary" class="tab-content">
+    <p class="section-title">pagină cu pagină, oprire cu oprire</p>
+    <div class="timeline">
+
+      <div class="sb-card">
+        <div class="sb-body simple">
+          <div>
+            <div class="sb-city">București</div>
+            <div class="sb-sub">românia · punct de plecare · 5 sept</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~5h15<br>356 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#c2b8a3,#e6dcc4);"></div>
+            <div class="sb-cap">adaugă poza cu Aris aici</div>
+          </div>
+          <div>
+            <div class="sb-city">Sofia</div>
+            <div class="sb-sub">bulgaria · pauză de drum · 5–6 sept · 1 noapte</div>
+            <div class="sb-hotel">Adella Boutique Hotel · 577 lei · free cancel 5 sept</div>
+            <div class="sb-stickers">
+              <span class="sticker a">zonă: Iztok, liniștit, parcare inclusă</span>
+              <span class="sticker b">medical: acceptabil</span>
+              <span class="sticker c">risc bebe: scăzut</span>
+            </div>
+            <div class="sb-note">↳ <b>intrare în Bulgaria (Schengen):</b> fără control. Cumpără vinieta Bulgaria pe bgtoll.bg înainte de plecare.</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: EURO (din 2026)</span>
+              <span class="chip b">UE/Schengen: UE+Schengen</span>
+              <span class="chip c">Roaming: DA</span>
+              <span class="chip d">Taxă de drum: e-vinietă ~4€/zi</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Academia Medicală Militară (~10-15 min) · <b>recomandat:</b> Institutul de Urgență Pirogov, pediatrie 24h (~15-20 min)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~5h15<br>395 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#a7c7d9,#f3e0b8);"></div>
+            <div class="sb-cap">prima baie a lui Aris la mare</div>
+          </div>
+          <div>
+            <div class="sb-city">Toroni, Halkidiki</div>
+            <div class="sb-sub">grecia · plaje & odihnă · 6–13 sept · 7 nopți</div>
+            <div class="sb-hotel">Haus Risos Next Generation · 4.693 lei · free cancel 6 aug</div>
+            <div class="sb-stickers">
+              <span class="sticker a">grădină cu măslini, plajă la 10 min</span>
+              <span class="sticker b">medical: excelent (CEASS valid)</span>
+              <span class="sticker c">risc bebe: foarte scăzut</span>
+            </div>
+            <div class="sb-note">↳ <b>intrare în Grecia (Schengen):</b> fără control. Taxe autostradă cash/card euro. Anti-radar interzis — amendă 2.000€.</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: EURO</span>
+              <span class="chip b">UE/Schengen: UE+Schengen</span>
+              <span class="chip c">Roaming: DA</span>
+              <span class="chip d">Taxă de drum: stații autostradă</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Infirmeria Nikiti (~15-20 min) · <b>recomandat:</b> Spitalul Ippokrateio, Salonic — pediatrie (~1-1.5h)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~5h30<br>430 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#9fb8c9,#e2d3a8);"></div>
+            <div class="sb-cap">adaugă poza cu Aris aici</div>
+          </div>
+          <div>
+            <div class="sb-city">Ohrid</div>
+            <div class="sb-sub">macedonia de nord · lac unesco · 13–16 sept · 3 nopți</div>
+            <div class="sb-hotel">Bellissimo Apartments · 806 lei · free cancel 7 sept</div>
+            <div class="sb-stickers">
+              <span class="sticker a">aproape de lac, parcare inclusă</span>
+              <span class="sticker b">medical: limitat</span>
+              <span class="sticker c">risc bebe: moderat</span>
+            </div>
+            <div class="sb-note">↳ <b>intrare în Macedonia de Nord (control real):</b> pașaport, fără notarial (ambii părinți). RCA valabil obligatoriu. Pleacă devreme. Taxă de drum cash (denari) la cabine.</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: Denar (MKD)</span>
+              <span class="chip b">UE/Schengen: non-UE</span>
+              <span class="chip c">Roaming: NU → eSIM</span>
+              <span class="chip d">Taxă de drum: cabine, plătit în denari</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Spitalul General Ohrid (~5-10 min) · <b>recomandat:</b> pentru pediatrie complexă, Spitalul Clinic Universitar de Copii Skopje (~3h)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~3h20<br>155 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#d6b98a,#c98f6b);"></div>
+            <div class="sb-cap">adaugă poza cu Aris aici</div>
+          </div>
+          <div>
+            <div class="sb-city">Berat</div>
+            <div class="sb-sub">albania · oraș unesco · 16–18 sept · 2 nopți</div>
+            <div class="sb-hotel">Olimpia Inn · 596 lei · free cancel 12 sept</div>
+            <div class="sb-stickers">
+              <span class="sticker a">vedere spre cetate, casele unesco</span>
+              <span class="sticker b">medical: cel mai slab de pe traseu</span>
+              <span class="sticker c">risc bebe: moderat</span>
+            </div>
+            <div class="sb-note">↳ <b>intrare în Albania (control real):</b> pașaport (3 luni+). CRITIC: verifică explicit că Green Card acoperă Albania. Fără taxe de drum (fără vinietă).</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: Lek (ALL)</span>
+              <span class="chip b">UE/Schengen: non-UE</span>
+              <span class="chip c">Roaming: NU → eSIM</span>
+              <span class="chip d">Taxă de drum: fără vinietă · Green Card obligatoriu</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Spitalul Regional Berat (~10 min) · <b>recomandat:</b> QSUT "Nënë Tereza", Tirana — pediatrie ICU (~2-2.5h)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~3h30<br>195 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#b8c4a3,#dccf9e);"></div>
+            <div class="sb-cap">adaugă poza cu Aris aici</div>
+          </div>
+          <div>
+            <div class="sb-city">Shkodër</div>
+            <div class="sb-sub">albania · spre muntenegru · 18–19 sept · 1 noapte</div>
+            <div class="sb-hotel">Hotel Dirista · 352 lei · free cancel 15 sept</div>
+            <div class="sb-stickers">
+              <span class="sticker a">central, lângă Cetatea Rozafa</span>
+              <span class="sticker b">medical: slab</span>
+              <span class="sticker c">risc bebe: moderat</span>
+            </div>
+            <div class="sb-note">↳ rămâi în Albania — sparge drumul lung Berat→Kotor în două etape ușoare pentru Aris. Fără taxe de drum în Albania.</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: Lek (ALL)</span>
+              <span class="chip b">UE/Schengen: non-UE</span>
+              <span class="chip c">Roaming: NU → eSIM</span>
+              <span class="chip d">Taxă de drum: fără vinietă · Green Card obligatoriu</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Spitalul Regional Shkodër, are pediatrie (~10-15 min) · <b>recomandat:</b> QSUT "Nënë Tereza", Tirana (~1.5-2h)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~2h15<br>110 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#8fa6c4,#dbe4ec);"></div>
+            <div class="sb-cap">a adormit pe cel mai frumos drum din viața lui</div>
+          </div>
+          <div>
+            <div class="sb-city">Kotor</div>
+            <div class="sb-sub">muntenegru · golf unesco · 19–22 sept · 3 nopți</div>
+            <div class="sb-hotel">Blanka Sea View Apartments · 1.566 lei · free cancel 7 aug</div>
+            <div class="sb-stickers">
+              <span class="sticker a">zona Muo, vedere la golf</span>
+              <span class="sticker b">medical: acceptabil</span>
+              <span class="sticker c">risc bebe: scăzut</span>
+            </div>
+            <div class="sb-note">↳ <b>intrare în Muntenegru, punctul Božaj:</b> pașaport, verifică Green Card. Tunel Sozina ~2,5€. Scaun auto sub 5 ani obligatoriu.</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: EURO</span>
+              <span class="chip b">UE/Schengen: non-UE</span>
+              <span class="chip c">Roaming: NU → eSIM</span>
+              <span class="chip d">Taxă de drum: tunel Sozina ~2,5€</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Spitalul General Kotor, pediatrie renovată (~10-15 min) · <b>recomandat:</b> pt. cazuri complexe, Centrul Clinic al Muntenegrului, Podgorica (~1-1.5h)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~1h45<br>80 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#a8c9d4,#e8dcc0);"></div>
+            <div class="sb-cap">adaugă poza cu Aris aici</div>
+          </div>
+          <div>
+            <div class="sb-city">Dubrovnik</div>
+            <div class="sb-sub">croația · perla adriaticii · 22–24 sept · 2 nopți</div>
+            <div class="sb-hotel">Apartment Diverti · 1.111 lei · free cancel 7 sept</div>
+            <div class="sb-stickers">
+              <span class="sticker a">zona Lapad, parcare privată</span>
+              <span class="sticker b">medical: excelent (CEASS valid)</span>
+              <span class="sticker c">risc bebe: foarte scăzut</span>
+            </div>
+            <div class="sb-note">↳ <b>intrare în Croația, punctul Debeli Brijeg:</b> trece scurt prin Bosnia (Neum) — 2 controale. Croația e UE/Schengen.</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: EURO</span>
+              <span class="chip b">UE/Schengen: UE+Schengen</span>
+              <span class="chip c">Roaming: DA</span>
+              <span class="chip d">Taxă de drum: tichet/km (Pelješac gratis)</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape / recomandat:</b> Spitalul General Dubrovnik, pe peninsula Lapad (~5-10 min) — singurul spital din regiune</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~2h30<br>130 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#a3b3c4,#d9c9a3);"></div>
+            <div class="sb-cap">adaugă poza cu Aris aici</div>
+          </div>
+          <div>
+            <div class="sb-city">Mostar</div>
+            <div class="sb-sub">bosnia · stari most unesco · 24–25 sept · 1 noapte</div>
+            <div class="sb-hotel">Apartment Romansa · 270 lei · free cancel 22 sept</div>
+            <div class="sb-stickers">
+              <span class="sticker a">centru, lângă Stari Most</span>
+              <span class="sticker b">medical: limitat</span>
+              <span class="sticker c">risc bebe: moderat</span>
+            </div>
+            <div class="sb-note">↳ <b>intrare în Bosnia (control real):</b> verifică Green Card. Evită ieșirile rurale — zone cu mine nedegradate.</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: Marca (BAM)</span>
+              <span class="chip b">UE/Schengen: non-UE</span>
+              <span class="chip c">Roaming: NU → eSIM</span>
+              <span class="chip d">Taxă de drum: ~4-6€/100km</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Ambulanța Centru, Stari Grad (~5 min) · <b>recomandat:</b> Spitalul Clinic Universitar Mostar, Bijeli Brijeg (~10-15 min)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~2h15<br>130 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#b3a3b8,#d4c4a3);"></div>
+            <div class="sb-cap">adaugă poza cu Aris aici</div>
+          </div>
+          <div>
+            <div class="sb-city">Sarajevo</div>
+            <div class="sb-sub">bosnia · capitală multiculturală · 25–26 sept · 1 noapte</div>
+            <div class="sb-hotel">Avenija Luxury Apartment · 251 lei · free cancel 22 sept</div>
+            <div class="sb-stickers">
+              <span class="sticker a">central, acces spre Baščaršija</span>
+              <span class="sticker b">medical: limitat</span>
+              <span class="sticker c">risc bebe: moderat</span>
+            </div>
+            <div class="sb-note">↳ rămâi în Bosnia — sparge Dubrovnik→Belgrad (~9h30) în două etape ușoare.</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: Marca (BAM)</span>
+              <span class="chip b">UE/Schengen: non-UE</span>
+              <span class="chip c">Roaming: NU → eSIM</span>
+              <span class="chip d">Taxă de drum: ~4-6€/100km</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Centrul Clinic Universitar Sarajevo (KCUS), Koševo (~5-10 min) · <b>recomandat:</b> ASA Hospital, pediatrie privată (~10-15 min)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~4h45<br>310 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#c4a3a3,#d9c9a3);"></div>
+            <div class="sb-cap">adaugă poza cu Aris aici</div>
+          </div>
+          <div>
+            <div class="sb-city">Belgrad</div>
+            <div class="sb-sub">serbia · capitală vibrantă · 26–28 sept · 2 nopți</div>
+            <div class="sb-hotel">Tim 3 · 684 lei · free cancel 20 sept</div>
+            <div class="sb-stickers">
+              <span class="sticker a">Vračar, lângă Templul Sf. Sava</span>
+              <span class="sticker b">medical: foarte bun</span>
+              <span class="sticker c">risc bebe: scăzut</span>
+            </div>
+            <div class="sb-note">↳ <b>intrare în Serbia (control real):</b> cu ambii părinți, fără acord notarial. Verifică Green Card. Cel mai lung segment — oprire la jumătate. Bariere de taxă pe autostrăzile Coridorului X (card/cash).</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: Dinar (RSD)</span>
+              <span class="chip b">UE/Schengen: non-UE</span>
+              <span class="chip c">Roaming: NU → eSIM</span>
+              <span class="chip d">Taxă de drum: autostrăzi Coridor X</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Dom Zdravlja Vračar (~5 min) · <b>recomandat:</b> Spitalul de Copii "Tiršova" / Centrul Clinic al Serbiei (~10-15 min)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~2h30<br>148 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#a3c4b8,#e0d3a3);"></div>
+            <div class="sb-cap">adaugă poza cu Aris aici</div>
+          </div>
+          <div>
+            <div class="sb-city">Timișoara</div>
+            <div class="sb-sub">românia · odihnă înainte de drum · 28–30 sept · 2 nopți</div>
+            <div class="sb-hotel">Heart of the City 2 · 634 lei · free cancel 20 sept</div>
+            <div class="sb-stickers">
+              <span class="sticker a">Calea Aradului, acces spre A1</span>
+              <span class="sticker b">medical: excelent</span>
+              <span class="sticker c">risc bebe: scăzut</span>
+            </div>
+            <div class="sb-note">↳ <b>intrare în România, punctul Vatin:</b> reintrare în UE. Rovinieta română trebuie să fie valabilă!</div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: Leu (RON)</span>
+              <span class="chip b">UE/Schengen: UE+Schengen</span>
+              <span class="chip c">Roaming: DA (acasă)</span>
+              <span class="chip d">Taxă de drum: rovinietă ~3,3€/7 zile</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Spital Premiere, privat (~5-10 min) · <b>recomandat:</b> Spitalul de Urgență pentru Copii "Louis Țurcanu", 24/7 pediatrie (~10-15 min)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~2h45<br>275 km</div>
+        <div class="sb-body">
+          <div>
+            <div class="sb-photo" style="background:linear-gradient(160deg,#d9c9a3,#c9b78c);"></div>
+            <div class="sb-cap">ultima seară — 8 țări bifate!</div>
+          </div>
+          <div>
+            <div class="sb-city">Sibiu</div>
+            <div class="sb-sub">românia · ultima oprire · 30 sept–1 oct · 1 noapte</div>
+            <div class="sb-hotel">de rezervat · Centrul Istoric</div>
+            <div class="sb-stickers">
+              <span class="sticker a">Piața Mare, Turnul Sfatului</span>
+              <span class="sticker b">medical: excelent</span>
+              <span class="sticker c">risc bebe: scăzut</span>
+            </div>
+            <div class="sb-intel">
+              <span class="chip a">Monedă: Leu (RON)</span>
+              <span class="chip b">UE/Schengen: UE+Schengen</span>
+              <span class="chip c">Roaming: DA (acasă)</span>
+              <span class="chip d">Taxă de drum: rovinietă ~3,3€/7 zile</span>
+            </div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Spitalul Clinic Județean de Urgență Sibiu (~5-10 min) · <b>recomandat:</b> Spitalul Clinic de Pediatrie Sibiu (~5-10 min)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="corner-note">🚗 ~4h<br>278 km</div>
+        <div class="sb-body simple">
+          <div>
+            <div class="sb-city">București</div>
+            <div class="sb-sub">românia · acasă · 1 oct</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHECKLIST TAB -->
+  <div id="tab-checklist" class="tab-content">
+    <p class="section-title">pagini de bifat, înainte să plecăm</p>
+    <div class="check-grid">
+      <div class="check-page">
+        <h3>documente personale</h3>
+        <label class="chk"><input type="checkbox" class="hand" data-key="doc-pasapoarte"><span>pașaport valabil pentru toți (recomandat față de CI)</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="doc-ci"><span>CI ca backup pentru adulți</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="doc-pasaport-aris"><span>pașaport Aris — obligatoriu în MK, AL, ME, BA, RS</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="doc-certificat-nastere"><span>certificat de naștere Aris (deși nu e obligatoriu cu ambii părinți)</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="doc-ceass"><span>CEASS — valabil doar în Grecia și Croația</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="doc-asigurare"><span>asigurare travel privată cu evacuare medicală + pediatrie</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="doc-scrisoare-medicala"><span>scrisoare medicală Aris în engleză, de la pediatru</span></label>
+      </div>
+      <div class="check-page">
+        <h3>documente mașină</h3>
+        <label class="chk"><input type="checkbox" class="hand" data-key="masina-talon-permis"><span>talon + permis de conducere</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="masina-cartea-verde"><span>Cartea Verde valabilă: BG, GR, MK, AL, ME, HR, BA, RS</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="masina-al-nebarata"><span>verifică explicit că litera AL (Albania) nu e barată</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="masina-rovinieta"><span>rovinieta România valabilă la întoarcere</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="masina-scaun-auto"><span>scaun auto omologat, montat corect</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="masina-trusa"><span>trusă prim ajutor + triunghi reflectorizant</span></label>
+      </div>
+      <div class="check-page">
+        <h3>kit medical Aris</h3>
+        <label class="chk"><input type="checkbox" class="hand" data-key="kit-paracetamol"><span>paracetamol/ibuprofen doze sugar (Nurofen/Panadol baby)</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="kit-termometru"><span>termometru digital</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="kit-ser-fiziologic"><span>ser fiziologic nazal</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="kit-rehidratare"><span>soluție rehidratare orală (Smecta, Hydralyte)</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="kit-crema"><span>cremă antiinflamatoare</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="kit-antihistaminic"><span>antihistaminic (la recomandarea pediatrului)</span></label>
+      </div>
+      <div class="check-page">
+        <h3>haine & echipament Aris</h3>
+        <label class="chk"><input type="checkbox" class="hand" data-key="haine-straturi"><span>haine pe straturi (variații termice zi/seară)</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="haine-schimb"><span>minim 2 seturi de schimb de rezervă/zi</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="haine-pijamale"><span>pijamale + body-uri de noapte</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="haine-incaltaminte"><span>încălțăminte confortabilă + sandale</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="haine-sapca-ploaie"><span>șapcă de soare + haină de ploaie ușoară</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="haine-ingrijire"><span>periuță, șampon, cremă hidratantă, forfecuță unghii</span></label>
+      </div>
+      <div class="check-page">
+        <h3>hrană & alimentație</h3>
+        <label class="chk"><input type="checkbox" class="hand" data-key="hrana-formula"><span>rezervă lapte praf/formulă pt. primele zile</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="hrana-borcanele"><span>borcănele/pireuri cunoscute, pt. zile cu opțiuni limitate</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="hrana-gustari"><span>gustări sigure de drum (biscuiți, fructe uscate)</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="hrana-ustensile"><span>ustensile de hrănit (linguriță, bol cu capac, bavetă)</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="hrana-sterilizare"><span>biberoane + accesoriu de sterilizat/curățat</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="hrana-apa"><span>sticlă filtrantă/tablete purificare apă (zone incerte)</span></label>
+      </div>
+      <div class="check-page">
+        <h3>electronice & adaptoare</h3>
+        <label class="chk"><input type="checkbox" class="hand" data-key="elec-esim"><span>eSIM regional Balcani, instalat înainte de plecare</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="elec-incarcatoare"><span>încărcătoare telefon/cameră + cabluri de rezervă</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="elec-powerbank"><span>power bank capacitate mare, pt. zile cu condus mult</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="elec-adaptor"><span>adaptor priză (verifică dacă e nevoie pe traseu)</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="elec-camera"><span>cameră/telefon dedicat filmării TikTok + mini-trepied</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="elec-card-memorie"><span>card de memorie extra + backup pt. filmări</span></label>
+      </div>
+      <div class="check-page">
+        <h3>divertisment & confort Aris</h3>
+        <label class="chk"><input type="checkbox" class="hand" data-key="dist-jucarii"><span>2-3 jucării preferate + una nouă „surpriză"</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="dist-atasament"><span>obiectul de atașament pentru somn (păturică/ursuleț)</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="dist-carticele"><span>cărticele cartonate rezistente</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="dist-muzica"><span>playlist/povești audio pentru orele de condus</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="dist-suport-gat"><span>pernă/suport de gât pentru somn în scaunul auto</span></label>
+        <label class="chk"><input type="checkbox" class="hand" data-key="dist-parasolar"><span>parasolar pentru geam mașină</span></label>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-tag"><div class="v">26</div><div class="l">nopți</div></div>
+      <div class="stat-tag"><div class="v">10.740 lei</div><div class="l">cazare</div></div>
+      <div class="stat-tag"><div class="v">~50-70€</div><div class="l">taxe drum</div></div>
+      <div class="stat-tag"><div class="v">CEASS</div><div class="l">valabil GR+HR</div></div>
+      <div class="stat-tag"><div class="v">112</div><div class="l">urgențe</div></div>
+    </div>
+    <div style="margin-top:10px;">
+      <span id="reset-checklist" style="font-family:'Patrick Hand',cursive;font-size:12px;color:var(--ink-faint);text-decoration:underline;cursor:pointer;">golește toate bifele</span>
+    </div>
+  </div>
+
+  <!-- TIKTOK TAB -->
+  <div id="tab-tiktok" class="tab-content">
+    <p class="section-title">planul de conținut, ținut separat de jurnal</p>
+    <div class="subtabs">
+      <div class="subtab active" onclick="switchSubtab('strategie', this)">Strategie</div>
+      <div class="subtab" onclick="switchSubtab('calendar', this)">Plan &amp; calendar</div>
+      <div class="subtab" onclick="switchSubtab('filmat', this)">Idei de filmat</div>
+      <div class="subtab" onclick="switchSubtab('siguranta', this)">Siguranță &amp; tehnic</div>
+    </div>
+
+    <div id="subtab-strategie" class="subtab-content active">
+      <div class="quote-box">
+        „Singurul canal care duce un bebeluș de 1 an într-un road-trip real de o lună prin Balcanii subevaluați — și arată, nu doar spune, că poți pleca la drum cu copilul."
+        <span class="en">EN: "The only channel road-tripping the Balkans with a one-year-old — proof that a baby isn't the end of the road."</span>
+      </div>
+      <p class="plan-p">Jobul emoțional pe care mizăm (nu informativ): părinții tineri vor permisiune și dovadă trăită că viața lor nu se oprește cu un copil. Concurentul real nu e alt cont, e resemnarea („stăm acasă"). Poziția e legată de un moment care expiră — categoria reală pe termen lung e „familia care nu se oprește din călătorit", nu doar „bebe + Balcani".</p>
+
+      <p class="plan-h3">Cei 5 piloni de conținut</p>
+      <table class="plan-table">
+        <tr><th>Pilon</th><th>Rol</th><th>Exemple</th></tr>
+        <tr><td>P1. Logistică bebe</td><td>cel mai „salvabil" — algoritmul îl premiază</td><td>scaun auto, somn pe drum, hrănit peste graniță, ce e în geanta de bebe</td></tr>
+        <tr><td>P2. Descoperire Balcani</td><td>reach / public nou</td><td>opriri subestimate, „nu-ți vine să crezi că e Albania", reacția localnicilor</td></tr>
+        <tr><td>P3. Cost/practic</td><td>căutare + salvări</td><td>cât a costat o zi în [țară], cash-only Albania, roaming UE vs non-UE, Green Card</td></tr>
+        <tr><td>P4. Real/emoțional</td><td>transformă privitorul în urmăritor</td><td>momente grele, victorii mici — cu grijă, fără să expunem suferința lui Aris</td></tr>
+        <tr><td>P5. Serial/scorecard</td><td>retenție, motiv de revenire</td><td>„Ziua X din 26", notăm fiecare țară 1-10 pentru părinți</td></tr>
+      </table>
+      <p class="plan-p">Mix recomandat: P1+P3 domină, P2 aduce reach, P4 construiește loialitate, P5 aduce revenire. Fără calendar rigid — alternăm organic.</p>
+      <p class="plan-p"><b>Nume de cont:</b> încă nedecis. Opțiune propusă: „Aris on the Map" / @arisonthemap — de confirmat când suntem gata.</p>
+    </div>
+
+    <div id="subtab-calendar" class="subtab-content">
+      <p class="phase-title">Faza PRE (8 iulie – 4 septembrie 2026) — ~8 săptămâni de warmup</p>
+      <p class="plan-p">Cadență actualizată (algoritm 2026): conturile noi nu mai sunt filtrate după urmăritori, ci testate direct pe conținut — 4-5 clipuri/săptămână de la început, minim 30 de zile și 30 de clipuri înainte să tragem concluzii. Prag completion rate pentru reach bun: ~70%.</p>
+      <ul class="plan-list">
+        <li><b>Săpt. 1 (8-14 iulie):</b> profil complet (bio bilingv RO/EN), 2-3 clipuri „Aris zice" de test + 1 throwback din arhivă.</li>
+        <li><b>Săpt. 2-8:</b> 4-5 postări/săptămână, mix: 2x „Aris zice" · 2x throwback Nisa/Benicassim · 1x pregătire/countdown (mașina, ruta, familia).</li>
+      </ul>
+
+      <p class="phase-title">Franciza „Aris zice" / "Aris says"</p>
+      <p class="plan-p">Poze cu Aris + text scurt cu ce „gândește" după expresie (TikTok Photo Mode, 5-15 poze). Nu cere filmare, nu cere ca Bianca să vorbească pe cameră — cel mai ușor de produs în volum din arhiva foto existentă. Rămâne relevant și după trip, nu doar în Balcani.</p>
+      <ul class="plan-list">
+        <li>Poza 1 = cea mai expresivă + caption-ul cel mai tare (swipe-through se măsoară de la prima poză).</li>
+        <li>Fiecare poză adaugă ceva nou — mini fir narativ, nu aceeași glumă repetată.</li>
+        <li>Text mare, contrastat, scurt (5-10 cuvinte), centrat — evită colțul dreapta/jos (butoane TikTok).</li>
+        <li>Sunet trending în fundal, chiar fără legătură cu conținutul — crește reach-ul separat.</li>
+        <li>Descrierea de sub clip: mai lungă, cu cuvinte cheie (bebeluș, road trip, Balcani, familie, 1 an).</li>
+      </ul>
+
+      <p class="phase-title">Throwback Nisa &amp; Benicassim</p>
+      <p class="plan-p">Nu ca amintire generică, ci ca „proof of concept" — dovadă că familia călătorește deja cu bebelușul, înainte de marele trip.</p>
+      <ul class="plan-list">
+        <li>„Am mai testat asta — Nisa, luna trecută. Acum urmează Balcanii." / "We tested this already — Nice, last month. Now the Balkans."</li>
+      </ul>
+      <p class="phase-title">Faza ÎN TIMPUL (5 sept – 1 oct 2026) — serialul</p>
+      <ul class="plan-list">
+        <li>1-2 clipuri/zi, dozat — filmăm mult, publicăm sustenabil, păstrăm rezervă pentru zilele grele de drum.</li>
+        <li>Toroni (7 nopți) e fereastra de „batch filming": filmăm 8-12 clipuri rezervă pentru partea rapidă a traseului.</li>
+        <li>Zilele fără roaming UE (MK, AL, ME, BA, RS): filmăm normal, publicăm pe eSIM local sau amânăm uploadul masiv pentru Dubrovnik/Timișoara.</li>
+      </ul>
+      <p class="phase-title">Faza POST (octombrie 2026+) — recap</p>
+      <ul class="plan-list">
+        <li>3-4 clipuri/săptămână, 4-6 săptămâni: recap general, cost total, ce am învățat — din materialul filmat în exces.</li>
+        <li>Test la 60 de zile după trip: dacă engagement-ul scade brusc și niciun format non-Balcani nu prinde, e semnalul să regândim direcția.</li>
+      </ul>
+      <p class="phase-title">Formate repetabile (franciza)</p>
+      <ul class="plan-list">
+        <li><b>Baby Border Log</b> — același cadru pe Aris în scaun, la fiecare graniță, text „Border #[X]: [țară]". Filmat în mașină, NU la ghișeu.</li>
+        <li><b>Country Scorecard</b> — card grafic simplu la finalul fiecărei țări (somn, mâncare, cost, drum, prietenos — 1-10).</li>
+        <li><b>Cât ne-a costat azi</b> — o cheltuială (masă/cazare/cafea) cu prețul pe ecran, comparată simplu cu un reper cunoscut.</li>
+        <li><b>Nimeni nu-ți spune asta</b> — un adevăr practic per episod (roaming, cash-only Albania, Green Card, km/zi cu bebe).</li>
+      </ul>
+    </div>
+
+    <div id="subtab-filmat" class="subtab-content">
+      <p class="plan-h3">Harta de episoade</p>
+      <table class="plan-table">
+        <tr><th>Zile</th><th>Oprire</th><th>Idee de episod</th></tr>
+        <tr><td>1</td><td>Sofia</td><td>„Ziua 1: am plecat." — lansarea serialului, prima graniță</td></tr>
+        <tr><td>2-8</td><td>Toroni</td><td>„Prima baie a lui Aris la mare" + batch filming pentru rezervă</td></tr>
+        <tr><td>9-11</td><td>Ohrid</td><td>„Nimeni nu vine aici — și greșesc", lacul, cost mic</td></tr>
+        <tr><td>12-13</td><td>Berat</td><td>„Albania e cash-only. Am aflat pe pielea noastră." + Green Card</td></tr>
+        <tr><td>14</td><td>Shkodër</td><td>„Ce nu-ți spune nimeni despre drumurile din Albania cu bebe"</td></tr>
+        <tr><td>15-17</td><td>Kotor</td><td>„Aris a adormit pe cel mai frumos drum" — serpentine, cinematic</td></tr>
+        <tr><td>18-19</td><td>Dubrovnik</td><td>prețul pe ecran (setup „scump") + zi de upload (revine roaming UE)</td></tr>
+        <tr><td>20</td><td>Mostar</td><td>contrastul de preț cu Dubrovnik (payoff), podul Mostar</td></tr>
+        <tr><td>21</td><td>Sarajevo</td><td>„Sarajevo ne-a surprins" — mix cultural</td></tr>
+        <tr><td>22-23</td><td>Belgrad</td><td>ultima țară „exotică", scorecard aproape complet</td></tr>
+        <tr><td>24-25</td><td>Timișoara</td><td>„Ne întoarcem acasă" + upload masiv (roaming acasă)</td></tr>
+        <tr><td>26</td><td>Sibiu</td><td>episod-concluzie: clasamentul final pe cele 8 țări</td></tr>
+      </table>
+
+      <p class="plan-h3">Bancă de hook-uri (ton normal, bilingv)</p>
+      <p class="plan-p"><b>P1 — Logistică bebe</b></p>
+      <ul class="plan-list">
+        <li>„Toată lumea ne-a zis că nu mai poți călători după copil. Suntem în ziua [X] prin Balcani cu Aris." / "They said you can't travel after having a baby."</li>
+        <li>„Ce am pus în mașină ca să supraviețuim orele de condus cu un copil de 1 an." / "What we packed to survive hours of driving with a 1-year-old."</li>
+      </ul>
+      <p class="plan-p"><b>P2 — Descoperire Balcani</b></p>
+      <ul class="plan-list">
+        <li>„Nu-ți vine să crezi că asta e Albania. E subestimată rău." / "You won't believe this is Albania."</li>
+        <li>„Muntenegru arată ca Croația de acum 20 de ani, la o fracțiune din preț." / "Montenegro looks like Croatia 20 years ago."</li>
+      </ul>
+      <p class="plan-p"><b>P3 — Cost/practic</b></p>
+      <ul class="plan-list">
+        <li>„Cât ne-a costat o zi întreagă în Albania, cu tot cu bebe." / "What one day in Albania cost us — with a baby."</li>
+        <li>„Albania e cash-only. Am aflat pe pielea noastră." / "Albania is cash only. We learned the hard way."</li>
+      </ul>
+      <p class="plan-p"><b>P4 — Real/emoțional</b> (cu grijă, fără spectacol pe seama lui Aris)</p>
+      <ul class="plan-list">
+        <li>„Un cuplu, un bebeluș, o mașină, 26 de zile. Ce ne-a învățat asta." / "One couple, one baby, one car, 26 days."</li>
+        <li>„Cum reacționează balcanicii când văd un bebeluș." / "How Balkan locals react to a baby."</li>
+      </ul>
+      <p class="plan-p"><b>P5 — Serial (hook de revenire)</b></p>
+      <ul class="plan-list">
+        <li>„Ziua [X] din 26. Notăm fiecare țară pentru părinți, de la 1 la 10." / "Day [X] of 26. Scoring every country for parents."</li>
+      </ul>
+    </div>
+
+    <div id="subtab-siguranta" class="subtab-content">
+      <p class="plan-h3">Protocol siguranță Aris</p>
+      <ul class="plan-list">
+        <li>Ștergem metadata EXIF (GPS) din fiecare fișier înainte de upload.</li>
+        <li>Postăm cu întârziere de 24-48h — niciodată „suntem ACUM la [cazare]".</li>
+        <li>Nu arătăm niciodată: locația exactă a cazării în timp real, copilul dezbrăcat/la baie/schimbat, documentele, rutina zilnică fixă.</li>
+        <li>NU filmăm la ghișeele de frontieră/poliția de frontieră — cadrul „Border Log" se filmează în mașină, pe Aris, nu la ghișeu.</li>
+        <li>Nu clasificăm contul „made for kids" — audiența e adultă (părinți).</li>
+        <li>Momentele grele/plâns: câteva secunde, focus pe cum gestionăm noi ca părinți, nu pe distresul lui Aris ca spectacol.</li>
+      </ul>
+      <div class="quote-box">Testul de 30 de secunde înainte de a posta: „Dacă acest clip ar apărea mâine într-un articol cu titlul «Părinți își expun copilul la X» — ce ar completa un jurnalist ostil?" Dacă răspunsul deranjează, nu postăm.</div>
+
+      <p class="plan-h3">Checklist tehnic + kit de filmare</p>
+      <ul class="plan-list">
+        <li>Telefon cu cameră bună; opțional un al doilea telefon dedicat car-cam (fixat cu fața spre Aris).</li>
+        <li>Suport auto pentru car-cam (mount pe bord/tetieră).</li>
+        <li>Microfon lavalieră ieftin — vocea clară contează pentru SEO și autenticitate.</li>
+        <li>Power bank + încărcător auto cu 2 porturi.</li>
+        <li>Backup zilnic în cloud (Google Photos/iCloud) când prindem wifi.</li>
+        <li>CapCut — editare + subtitrare bilingvă automată; dezactivăm watermark-ul la export.</li>
+        <li>eSIM regional Balcani, instalat înainte de plecare.</li>
+      </ul>
+
+      <p class="plan-h3">Metrici de succes</p>
+      <ul class="plan-list">
+        <li>Completion rate / watch time — semnalul #1 (prag orientativ ~70% pentru reach bun).</li>
+        <li>Saves (&gt;2%) și shares (&gt;1%) — arată valoare reală, mai mult decât like-urile.</li>
+        <li>Urmăritori noi/săptămână — dar nu singurul reper; minimum 30 de zile și 15-20 de clipuri postate înainte de a trage concluzii.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  const target = btn || document.querySelector('.tab[data-tab="' + name + '"]');
+  if (target) target.classList.add('active');
+}
+
+function switchSubtab(name, btn) {
+  const parent = btn.closest('.tab-content');
+  parent.querySelectorAll('.subtab').forEach(t => t.classList.remove('active'));
+  parent.querySelectorAll('.subtab-content').forEach(t => t.classList.remove('active'));
+  const content = document.getElementById('subtab-' + name);
+  if (content) content.classList.add('active');
+  btn.classList.add('active');
+}
+
+const TIKTOK_HIDDEN_KEY = 'balcani-2026-tiktok-hidden';
+
+function toggleTiktokTab() {
+  const btn = document.getElementById('tab-btn-tiktok');
+  const isHidden = btn.style.display === 'none';
+  if (isHidden) {
+    btn.style.display = '';
+    try { window.localStorage.setItem(TIKTOK_HIDDEN_KEY, 'false'); } catch (e) {}
+  } else {
+    if (btn.classList.contains('active')) {
+      switchTab('map');
+    }
+    btn.style.display = 'none';
+    try { window.localStorage.setItem(TIKTOK_HIDDEN_KEY, 'true'); } catch (e) {}
+  }
+}
+
+function initTiktokVisibility() {
+  try {
+    const hidden = window.localStorage.getItem(TIKTOK_HIDDEN_KEY) === 'true';
+    if (hidden) document.getElementById('tab-btn-tiktok').style.display = 'none';
+  } catch (e) {}
+}
+
+initTiktokVisibility();
+
+const stops = [
+  { name: "București (Plecare)", lat: 44.4268, lng: 26.1025, color: "#a13d2e", info: "Plecare 5 sept", type: "home" },
+  { name: "Sofia", lat: 42.6668, lng: 23.3502, color: "#5c6b3f", info: "5-6 sept · 577 lei", type: "pause" },
+  { name: "Toroni", lat: 39.9854, lng: 23.9106, color: "#a1592e", info: "6-13 sept · 4.693 lei", type: "main" },
+  { name: "Ohrid", lat: 41.1092, lng: 20.8090, color: "#a1592e", info: "13-16 sept · 806 lei", type: "main" },
+  { name: "Berat", lat: 40.7047, lng: 19.9532, color: "#a1592e", info: "16-18 sept · 596 lei", type: "main" },
+  { name: "Shkodër", lat: 42.0629, lng: 19.5156, color: "#2d4159", info: "18-19 sept · 352 lei", type: "pause" },
+  { name: "Kotor", lat: 42.4312, lng: 18.7579, color: "#a1592e", info: "19-22 sept · 1.566 lei", type: "main" },
+  { name: "Dubrovnik", lat: 42.6605, lng: 18.0719, color: "#a1592e", info: "22-24 sept · 1.111 lei", type: "main" },
+  { name: "Mostar", lat: 43.3438, lng: 17.8078, color: "#2d4159", info: "24-25 sept · 270 lei", type: "pause" },
+  { name: "Sarajevo", lat: 43.8497, lng: 18.3604, color: "#2d4159", info: "25-26 sept · 251 lei", type: "pause" },
+  { name: "Belgrad", lat: 44.7966, lng: 20.4819, color: "#a1592e", info: "26-28 sept · 684 lei", type: "main" },
+  { name: "Timișoara", lat: 45.7558, lng: 21.2297, color: "#a13d2e", info: "28-30 sept · 634 lei", type: "home" },
+  { name: "Sibiu", lat: 45.7983, lng: 24.1256, color: "#a13d2e", info: "30 sept-1 oct", type: "home" },
+  { name: "București (Sosire)", lat: 44.4268, lng: 26.1025, color: "#a13d2e", info: "1 oct", type: "home" }
+];
+
+function initMap() {
+  const map = L.map('map').setView([42.5, 20.5], 5);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap, © CARTO', maxZoom: 19
+  }).addTo(map);
+
+  const latlngs = stops.map(s => [s.lat, s.lng]);
+  L.polyline(latlngs, { color: '#3a3226', weight: 2, opacity: 0.75, dashArray: '2, 8' }).addTo(map);
+
+  stops.forEach((s, i) => {
+    const size = s.type === 'pause' ? 11 : 15;
+    const icon = L.divIcon({
+      html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${s.color};border:2px dashed #fffdf8;box-shadow:0 0 0 1px ${s.color};"></div>`,
+      className: '', iconAnchor: [size/2, size/2]
+    });
+    L.marker([s.lat, s.lng], { icon })
+      .addTo(map)
+      .bindPopup(`<div style="font-family:'Courier Prime',monospace;font-size:12px;">
+        <div style="font-family:'Caveat',cursive;font-weight:700;font-size:16px;margin-bottom:2px">${i + 1}. ${s.name}</div>
+        <div style="color:#8a7a54">${s.info}</div>
+      </div>`);
+  });
+}
+
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+document.head.appendChild(link);
+
+const script = document.createElement('script');
+script.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+script.onload = initMap;
+document.head.appendChild(script);
+
+// --- bifele se salvează local, în acest browser, pe acest calculator ---
+const CHECKLIST_KEY = 'balcani-2026-checklist-v1';
+
+function loadChecklistState() {
+  try {
+    const raw = window.localStorage.getItem(CHECKLIST_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) { return {}; }
+}
+
+function saveChecklistState(state) {
+  try { window.localStorage.setItem(CHECKLIST_KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+function initChecklistPersistence() {
+  const state = loadChecklistState();
+  const boxes = document.querySelectorAll('input.hand[data-key]');
+  boxes.forEach(function (box) {
+    if (state[box.dataset.key]) box.checked = true;
+    box.addEventListener('change', function () {
+      const s = loadChecklistState();
+      s[box.dataset.key] = box.checked;
+      saveChecklistState(s);
+    });
+  });
+
+  const resetLink = document.getElementById('reset-checklist');
+  if (resetLink) {
+    resetLink.addEventListener('click', function () {
+      if (!confirm('Ștergi toate bifele de pe listă?')) return;
+      saveChecklistState({});
+      boxes.forEach(function (box) { box.checked = false; });
+    });
+  }
+}
+
+initChecklistPersistence();
+</script>
+</body>
+</html>
