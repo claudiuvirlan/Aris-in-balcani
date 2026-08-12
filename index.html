@@ -110,6 +110,24 @@
   .plan-table th, .plan-table td { border: 1px solid var(--dash); padding: 8px 10px; text-align: left; vertical-align: top; }
   .plan-table th { background: var(--paper2); font-family: 'Caveat', cursive; font-size: 15px; font-weight: 700; }
 
+  .guide-city-title { font-family: 'Caveat', cursive; font-weight: 700; font-size: 36px; color: var(--ink); }
+  .guide-city-sub { font-family: 'Courier Prime', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-faint); margin-top: 3px; }
+  .guide-intro { font-family: 'Caveat', cursive; font-size: 19px; color: var(--rust); margin: 12px 0 22px; padding-left: 14px; border-left: 3px solid var(--tape-mustard); max-width: 680px; }
+  .guide-block { margin-bottom: 22px; max-width: 700px; }
+  .guide-label { font-family: 'Caveat', cursive; font-weight: 700; font-size: 19px; color: var(--ink); margin-bottom: 8px; display: block; }
+  .guide-item { font-family: 'Patrick Hand', cursive; font-size: 13.5px; color: var(--ink); margin-bottom: 8px; padding-left: 15px; position: relative; line-height: 1.55; }
+  .guide-item::before { content: '•'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+  .guide-item b { font-weight: 700; }
+  .guide-food { display: flex; flex-wrap: wrap; gap: 8px; }
+  .guide-food span { font-family: 'Patrick Hand', cursive; font-size: 12.5px; background: var(--paper2); border: 1px dashed var(--dash); border-radius: 10px; padding: 6px 12px; color: var(--ink); }
+  .guide-food span b { color: var(--rust); font-weight: 700; }
+  .guide-know { background: rgba(61,107,99,0.10); border-radius: 8px; padding: 14px 18px; max-width: 700px; }
+  .guide-know-item { font-family: 'Patrick Hand', cursive; font-size: 13px; color: var(--ink); padding: 3px 0 3px 18px; position: relative; }
+  .guide-know-item::before { content: '↳'; position: absolute; left: 0; color: var(--rust); }
+  .guide-baby { margin-top: 10px; background: var(--tape-mustard); border-radius: 6px; padding: 8px 14px; font-family: 'Patrick Hand', cursive; font-size: 12.5px; color: var(--ink); transform: rotate(-0.3deg); max-width: 680px; }
+  .guide-baby b { color: var(--red); }
+  .guide-subtabs { display: flex; gap: 6px; margin: 4px 0 26px; flex-wrap: wrap; }
+
   @media (max-width: 900px) {
     .sb-body { grid-template-columns: 1fr; }
     .check-grid { grid-template-columns: 1fr; }
@@ -126,6 +144,7 @@
 <div class="tabs">
   <div class="tab active" data-tab="map" onclick="switchTab('map', this)">Harta traseului</div>
   <div class="tab" data-tab="itinerary" onclick="switchTab('itinerary', this)">Jurnalul opririlor</div>
+  <div class="tab" data-tab="ghid" onclick="switchTab('ghid', this)">Pas cu pas</div>
   <div class="tab" data-tab="checklist" onclick="switchTab('checklist', this)">De bifat înainte</div>
   <div class="tab" id="tab-btn-tiktok" data-tab="tiktok" onclick="switchTab('tiktok', this)">Plan TikTok</div>
   <div class="tab-toggle" id="tiktokToggle" onclick="toggleTiktokTab()" title="ascunde/arată tabul Plan TikTok">⋯</div>
@@ -152,10 +171,10 @@
       <span><span class="legend-dot" style="background:#2d4159"></span>pauză de o noapte</span>
     </div>
     <div class="stat-row">
-      <div class="stat-tag"><div class="v">~2.990 km</div><div class="l">distanță</div></div>
-      <div class="stat-tag"><div class="v">~46h</div><div class="l">condus</div></div>
+      <div class="stat-tag"><div class="v">~2.960 km</div><div class="l">distanță</div></div>
+      <div class="stat-tag"><div class="v">~45h30</div><div class="l">condus</div></div>
       <div class="stat-tag"><div class="v">26</div><div class="l">nopți</div></div>
-      <div class="stat-tag"><div class="v">10.740 lei</div><div class="l">cazare rezervată</div></div>
+      <div class="stat-tag"><div class="v">11.332 lei</div><div class="l">cazare rezervată</div></div>
       <div class="stat-tag"><div class="v">~50-70€</div><div class="l">taxe de drum</div></div>
       <div class="stat-tag"><div class="v">112</div><div class="l">urgențe, orice țară</div></div>
     </div>
@@ -204,18 +223,18 @@
       </div>
 
       <div class="sb-card">
-        <div class="corner-note">🚗 ~5h15<br>395 km</div>
+        <div class="corner-note">🚗 ~5h10<br>394 km</div>
         <div class="sb-body">
           <div>
             <div class="sb-photo" style="background:linear-gradient(160deg,#a7c7d9,#f3e0b8);"></div>
             <div class="sb-cap">prima baie a lui Aris la mare</div>
           </div>
           <div>
-            <div class="sb-city">Toroni, Halkidiki</div>
+            <div class="sb-city">Nikiti, Halkidiki</div>
             <div class="sb-sub">grecia · plaje & odihnă · 6–13 sept · 7 nopți</div>
-            <div class="sb-hotel">Haus Risos Next Generation · 4.693 lei · free cancel 6 aug</div>
+            <div class="sb-hotel">Villa Sara · 5.285 lei · free cancel 6 aug</div>
             <div class="sb-stickers">
-              <span class="sticker a">grădină cu măslini, plajă la 10 min</span>
+              <span class="sticker a">200 m de plajă, 10 min pe jos până în centrul Nikiti</span>
               <span class="sticker b">medical: excelent (CEASS valid)</span>
               <span class="sticker c">risc bebe: foarte scăzut</span>
             </div>
@@ -226,13 +245,13 @@
               <span class="chip c">Roaming: DA</span>
               <span class="chip d">Taxă de drum: stații autostradă</span>
             </div>
-            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Infirmeria Nikiti (~15-20 min) · <b>recomandat:</b> Spitalul Ippokrateio, Salonic — pediatrie (~1-1.5h)</div>
+            <div class="sb-hosp">🏥 <b>cel mai aproape:</b> Infirmeria Nikiti, chiar în localitate (~5 min) · <b>recomandat:</b> Spitalul Ippokrateio, Salonic — pediatrie (~1-1.5h)</div>
           </div>
         </div>
       </div>
 
       <div class="sb-card">
-        <div class="corner-note">🚗 ~5h30<br>430 km</div>
+        <div class="corner-note">🚗 ~5h10<br>~400 km</div>
         <div class="sb-body">
           <div>
             <div class="sb-photo" style="background:linear-gradient(160deg,#9fb8c9,#e2d3a8);"></div>
@@ -594,13 +613,477 @@
     </div>
     <div class="stat-row">
       <div class="stat-tag"><div class="v">26</div><div class="l">nopți</div></div>
-      <div class="stat-tag"><div class="v">10.740 lei</div><div class="l">cazare</div></div>
+      <div class="stat-tag"><div class="v">11.332 lei</div><div class="l">cazare</div></div>
       <div class="stat-tag"><div class="v">~50-70€</div><div class="l">taxe drum</div></div>
       <div class="stat-tag"><div class="v">CEASS</div><div class="l">valabil GR+HR</div></div>
       <div class="stat-tag"><div class="v">112</div><div class="l">urgențe</div></div>
     </div>
     <div style="margin-top:10px;">
       <span id="reset-checklist" style="font-family:'Patrick Hand',cursive;font-size:12px;color:var(--ink-faint);text-decoration:underline;cursor:pointer;">golește toate bifele</span>
+    </div>
+  </div>
+
+  <!-- GHID TAB -->
+  <div id="tab-ghid" class="tab-content">
+    <p class="section-title">ce vizităm, ce mâncăm, ce trebuie știut — oraș cu oraș</p>
+    <div class="subtabs">
+      <div class="subtab active" onclick="switchSubtab('sofia', this)">Sofia</div>
+      <div class="subtab" onclick="switchSubtab('nikiti', this)">Nikiti</div>
+      <div class="subtab" onclick="switchSubtab('ohrid', this)">Ohrid</div>
+      <div class="subtab" onclick="switchSubtab('berat', this)">Berat</div>
+      <div class="subtab" onclick="switchSubtab('shkoder', this)">Shkodër</div>
+      <div class="subtab" onclick="switchSubtab('kotor', this)">Kotor</div>
+      <div class="subtab" onclick="switchSubtab('dubrovnik', this)">Dubrovnik</div>
+      <div class="subtab" onclick="switchSubtab('mostar', this)">Mostar</div>
+      <div class="subtab" onclick="switchSubtab('sarajevo', this)">Sarajevo</div>
+      <div class="subtab" onclick="switchSubtab('belgrad', this)">Belgrad</div>
+      <div class="subtab" onclick="switchSubtab('timisoara', this)">Timișoara</div>
+      <div class="subtab" onclick="switchSubtab('sibiu', this)">Sibiu</div>
+    </div>
+
+    <div id="subtab-sofia" class="subtab-content active">
+      <div class="guide-city-title">Sofia</div>
+      <div class="guide-city-sub">Bulgaria · pauză de drum · 5–6 sept</div>
+      <div class="guide-intro">O capitală relaxată, cu straturi de istorie romană, otomană și comunistă la fiecare colț. O seară e suficientă pentru a-i simți pulsul.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Catedrala Alexander Nevski</b> — simbolul orașului, cu cupole aurii; una dintre cele mai mari catedrale ortodoxe din lume.</div>
+        <div class="guide-item"><b>Biserica Sf. Gheorghe (Rotonda)</b> — cea mai veche clădire din Sofia, din sec. IV, ascunsă între clădiri administrative.</div>
+        <div class="guide-item"><b>Bulevardul Vitosha</b> — artera pietonală cu cafenele, perfectă pentru o plimbare de seară cu căruciorul.</div>
+        <div class="guide-item"><b>Biserica Sf. Nedelya și Moscheea Banya Bashi</b> — ortodoxie și islam la câțiva pași unul de altul.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Plimbare lentă prin centrul pietonal la apus și o cină liniștită — e tot ce vă trebuie după 5 ore de drum.</div>
+        <div class="guide-item">Dacă mai aveți energie: parcul din fața Palatului Național al Culturii (NDK), spațios pentru copil.</div>
+        <div class="guide-item">Telecabina spre muntele Vitosha — jumătate de zi, panoramă superbă, dar probabil prea mult cu o singură noapte și un bebeluș; opțional, nu prioritar.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Banitsa</b> — plăcintă cu foietaj și brânză, micul dejun bulgăresc clasic.</span>
+          <span><b>Shopska salata</b> — roșii, castraveți, ardei și brânză sirene rasă; răcoritoare.</span>
+          <span><b>Kavarma</b> — tocană de carne la vas de lut, gătită lent.</span>
+          <span><b>Ayran & iaurt bulgăresc</b> — iaurtul de aici e faimos în toată lumea.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Moneda e <b>euro</b> — Bulgaria a trecut la euro pe 1 ianuarie 2026; cardul merge peste tot în oraș.</div>
+        <div class="guide-know-item">Bulgarii dau din cap invers: <b>a da din cap = nu</b>, a-l clătina = da. Ușor derutant la restaurant.</div>
+        <div class="guide-know-item">Alfabetul e chirilic — util să recunoști câteva litere pentru orientare.</div>
+      </div>
+    </div>
+
+    <div id="subtab-nikiti" class="subtab-content">
+      <div class="guide-city-title">Nikiti</div>
+      <div class="guide-city-sub">Grecia · Sithonia, Halkidiki · 6–13 sept · 7 nopți</div>
+      <div class="guide-intro">Șapte nopți într-un sat de coastă cu plajă lungă chiar sub cazare — aici ritmul e dictat de somnul de prânz al copilului, nu de un itinerar.</div>
+      <div class="guide-block">
+        <span class="guide-label">Chiar la Nikiti (fără drum)</span>
+        <div class="guide-item"><b>Plaja Nikiti</b> — plajă lungă (Blue Flag), apă mică pe zeci de metri, promenadă cu terase, cafenele și loc de joacă; 200 m de cazare.</div>
+        <div class="guide-item"><b>Nikiti Ano</b> (satul vechi) — 10 min pe jos: arhitectură macedoneană sec. XIX, biserica Agios Nikitas cu clopotniță cu vedere la mare, ruinele bazilicii bizantine (sec. V), muzeu etnografic mic, piață locală vinerea.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut/făcut mai departe</span>
+        <div class="guide-item"><b>Vourvourou & Karydi Beach</b> — cea mai fotografiată plajă din Sithonia, apă mică pe zeci de metri; ~15-20 min cu mașina.</div>
+        <div class="guide-item"><b>Neos Marmaras</b> — cel mai apropiat orășel cu viață, taverne pe malul mării; ~20-25 min.</div>
+        <div class="guide-item"><b>Parthenonas</b> — sat de piatră restaurat pe deal, vedere superbă la apus.</div>
+        <div class="guide-item"><b>Toroni Beach</b> — plajă frumoasă, dar acum ~40 min cu mașina (nu mai e sub cazare, cum era planul inițial).</div>
+        <div class="guide-item"><b>Porto Koufo</b> — cel mai adânc port natural din Grecia, golf închis; ~50 min, cel mai îndepărtat — combină cu Neos Marmaras în aceeași zi.</div>
+        <div class="guide-item"><b>Croazieră spre Muntele Athos</b> — de la Ormos Panagias; se vede de pe mare (femeile nu debarcă pe peninsulă). Cu bebeluș, alege una scurtă.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Pește și fructe de mare proaspete</b> — comandă „psari" la kilogram în tavernele de pe mal.</span>
+          <span><b>Souvlaki & gyros</b> — rapid, ieftin, pe placul tuturor.</span>
+          <span><b>Greek salad (horiatiki)</b> — cu feta adevărată și ulei de măsline local.</span>
+          <span><b>Loukoumades</b> — gogoși mici cu miere și scorțișoară, desertul perfect pentru copil.</span>
+          <span><b>Mydia saganaki</b> — midii în sos de roșii cu feta.</span>
+          <span><b>Brânză de capră de Holomontas & tsipouro</b> — specialități locale de munte.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Grecii mănâncă târziu — tavernele se animă după 21:00. Prânzul poate fi lung și lent.</div>
+        <div class="guide-know-item">Multe taverne au colț de joacă sau spațiu unde copiii aleargă liber; grecii adoră copiii.</div>
+        <div class="guide-know-item">Ia papucei de apă — unele plaje au pietricele la intrare.</div>
+        <div class="guide-know-item">Fii atent la soarele de amiază; umbră și pălărie obligatorii pentru bebeluș între 12–16.</div>
+        <div class="guide-know-item">Farmacii și supermarketuri sunt în centrul Nikiti, la ~10 min pe jos.</div>
+      </div>
+      <div class="guide-baby"><b>Pontul zilei:</b> alternează zilele de plajă cu zile „acasă" la cazare, ca să nu obosești copilul. Șapte zile dau exact acest lux.</div>
+    </div>
+
+    <div id="subtab-ohrid" class="subtab-content">
+      <div class="guide-city-title">Ohrid</div>
+      <div class="guide-city-sub">Macedonia de Nord · lac UNESCO · 13–16 sept · 3 nopți</div>
+      <div class="guide-intro">Un lac vechi de un milion de ani, atât de limpede încât vezi fundul la câțiva metri, și un oraș cu 365 de biserici, câte una pentru fiecare zi.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Plaošnik</b> — cel mai recomandat obiectiv din oraș: biserica Sf. Kliment reconstruită, ruinele primei universități slave, cel mai bun punct de belvedere peste lac (frumos la apus); lângă Kaneo.</div>
+        <div class="guide-item"><b>Biserica Sf. Ioan la Kaneo</b> — icoana orașului, cocoțată pe o stâncă deasupra lacului.</div>
+        <div class="guide-item"><b>Cetatea lui Samuil</b> — ziduri medievale cu panoramă peste tot orașul și lac.</div>
+        <div class="guide-item"><b>Teatrul antic</b> — amfiteatru elenistic din sec. IV î.Hr., încă folosit pentru concerte.</div>
+        <div class="guide-item"><b>Mănăstirea Sf. Naum</b> — la 29 km, lângă izvoarele lacului; păuni în curte și bărci pe apă cristalină.</div>
+        <div class="guide-item"><b>Bazarul vechi & biserica Sf. Sofia</b> — fresce bizantine remarcabile.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Plimbare cu barca pe lac — liniștită, scurtă, perfectă cu bebelușul.</div>
+        <div class="guide-item">Izvoarele de la Sf. Naum — tur cu barca cu fundul de sticlă printre izvoare.</div>
+        <div class="guide-item">Baie în lac — plajele din zona Gradiste sau lângă oraș, apă dulce și caldă în septembrie.</div>
+        <div class="guide-item">Perle de Ohrid — suvenir local autentic, făcute după o rețetă secretă din solzi de pește.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Păstrăv de Ohrid</b> — specialitatea lacului (comandă varianta permisă legal, nu cea protejată).</span>
+          <span><b>Tavče gravče</b> — fasole la cuptor în vas de lut, felul național macedonean.</span>
+          <span><b>Ajvar</b> — pastă de ardei copt, se pune pe absolut orice.</span>
+          <span><b>Burek</b> — plăcintă cu foietaj, brânză sau carne; micul dejun local.</span>
+          <span><b>Kebapi</b> — mici la grătar cu ceapă și lipie.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Moneda e denarul macedonean (MKD); ai nevoie de cash în locurile mici.</div>
+        <div class="guide-know-item">Orașul vechi are străzi pavate abrupte — dificil cu căruciorul, mai ușor cu port-bebe (mai ales spre cetate/Kaneo/Plaošnik).</div>
+        <div class="guide-know-item">E foarte ieftin față de Grecia sau Croația — profită pentru mese la restaurant.</div>
+        <div class="guide-know-item">Septembrie e ideal: mai puțini turiști, apă încă bună de scăldat.</div>
+      </div>
+    </div>
+
+    <div id="subtab-berat" class="subtab-content">
+      <div class="guide-city-title">Berat</div>
+      <div class="guide-city-sub">Albania · orașul celor o mie de ferestre · 16–18 sept · 2 nopți</div>
+      <div class="guide-intro">Case otomane albe urcând una peste alta pe două maluri de râu. Un oraș-muzeu viu, protejat UNESCO, unde oamenii încă locuiesc în cetate.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Cetatea Berat (Kalaja)</b> — cetate locuită de peste 2000 de ani; înăuntru sunt case, biserici și taverne.</div>
+        <div class="guide-item"><b>Cartierul Mangalem</b> — casele albe iconice cu ferestre nenumărate, pe malul musulman.</div>
+        <div class="guide-item"><b>Cartierul Gorica</b> — celălalt mal, legat prin podul otoman de piatră; cea mai bună priveliște spre Mangalem.</div>
+        <div class="guide-item"><b>Muzeul Onufri</b> — icoane bizantine în biserica din cetate.</div>
+        <div class="guide-item"><b>Muzeul Etnografic</b> — casă otomană din sec. XVIII în Mangalem, obiecte și costume tradiționale; program uneori neregulat, verifică local înainte.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Apus din cetate — lumina cade pe casele albe și tot orașul strălucește.</div>
+        <div class="guide-item">Cheile Osumit — canion spectaculos la ~1h; se vede frumos și din mașină / de la margine.</div>
+        <div class="guide-item">Degustare de vin — crama Çobo la ~30 min, într-una din cele mai bune regiuni viticole albaneze.</div>
+        <div class="guide-item">Plimbare pe faleza râului Osum — seara, lină, bună cu căruciorul.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Tavë kosi</b> — miel la cuptor cu iaurt și ou, felul național albanez.</span>
+          <span><b>Byrek</b> — plăcintă în foi subțiri, cu brânză, spanac sau carne.</span>
+          <span><b>Fërgesë</b> — tocăniță de ardei, roșii și brânză, la vas de lut.</span>
+          <span><b>Qofte</b> — chiftele condimentate la grătar.</span>
+          <span><b>Raki</b> — țuica locală, oferită adesea gratuit la final de masă.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Moneda e leku albanez (ALL); euro e uneori acceptat, dar cash-ul local e rege.</div>
+        <div class="guide-know-item">Albanezii sunt extrem de ospitalieri cu familiile — „Besa" (cuvântul de onoare, protecția oaspetelui) e parte din cultură.</div>
+        <div class="guide-know-item">Condu defensiv: șoferii sunt imprevizibili, iar drumurile secundare pot fi înguste.</div>
+        <div class="guide-know-item">Străzile din cetate sunt din piatră colțuroasă — atenție cu căruciorul, port-bebe recomandat.</div>
+      </div>
+    </div>
+
+    <div id="subtab-shkoder" class="subtab-content">
+      <div class="guide-city-title">Shkodër</div>
+      <div class="guide-city-sub">Albania · poarta spre Muntenegru · 18–19 sept · 1 noapte</div>
+      <div class="guide-intro">Un popas de o noapte care sparge drumul lung spre Kotor — dar cu o cetate spectaculoasă și cel mai mare lac din Balcani chiar la margine.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Cetatea Rozafa</b> — pe un deal, cu vedere spre trei râuri și lac; legenda zidirii ei e celebră în toți Balcanii.</div>
+        <div class="guide-item"><b>Lacul Shkodër</b> — cel mai mare lac din sudul Europei, la marginea orașului.</div>
+        <div class="guide-item"><b>Strada Kolë Idromeno</b> — bulevardul pietonal renovat, cu clădiri în stil italian și cafenele.</div>
+        <div class="guide-item"><b>Muzeul Marubi</b> — chiar pe Kolë Idromeno; deține prima fotografie făcută vreodată în Albania (1858) și o colecție remarcabilă din epoca otomană până în cea comunistă — bun refugiu răcoros cu bebelușul.</div>
+        <div class="guide-item"><b>Podul Mesi</b> — pod otoman de piatră la câțiva km, peste râul Kir.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Plimbare de seară pe strada pietonală — Shkodër e „orașul bicicletelor", relaxat și viu.</div>
+        <div class="guide-item">Apus de la cetatea Rozafa, dacă ajungeți la timp.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Krap / carp de lac</b> — peștele specific lacului Shkodër.</span>
+          <span><b>Japrak</b> — sarmale locale în foi de viță.</span>
+          <span><b>Byrek shkodran</b> — varianta locală de plăcintă.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">E un popas strategic — nu supraîncărca ziua, e menit ca odihnă între Berat și Kotor.</div>
+        <div class="guide-know-item">Granița cu Muntenegru (Hani i Hotit / Božaj) e la ~40 min a doua zi dimineața.</div>
+      </div>
+    </div>
+
+    <div id="subtab-kotor" class="subtab-content">
+      <div class="guide-city-title">Kotor</div>
+      <div class="guide-city-sub">Muntenegru · golf UNESCO · 19–22 sept · 3 nopți</div>
+      <div class="guide-intro">Munți abrupți care se prăbușesc direct în apă, un golf care șerpuiește ca un fiord, și un oraș medieval de piatră strâns la poalele lor.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Orașul vechi (Stari Grad)</b> — labirint de străduțe de piatră, piațete și biserici, în ziduri venețiene.</div>
+        <div class="guide-item"><b>Telecabina Kotor–Lovćen</b> — deschisă din 2023, 11 min până la 1.350 m, panoramă superbă; alternativă mai ușoară la cele 1.350 de trepte ale fortăreței sau la drumul cu 25 de serpentine.</div>
+        <div class="guide-item"><b>Fortăreața Sf. Ioan (San Giovanni)</b> — 1.350 de trepte până sus. Cu bebelușul în port-bebe, urcă doar parțial.</div>
+        <div class="guide-item"><b>Perast</b> — orășel baroc superb la 15 min, cu două insulițe în față.</div>
+        <div class="guide-item"><b>Our Lady of the Rocks</b> — insulă artificială cu o biserică, se ajunge cu barca din Perast.</div>
+        <div class="guide-item"><b>Catedrala Sf. Trifon</b> — din 1166, în inima orașului vechi.</div>
+        <div class="guide-item"><b>Muzeul Pisicilor</b> — mic, dar iconic pentru Kotor; prag de piatră și spații înguste, nu merge cu căruciorul.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Tur cu barca pe golf — cea mai frumoasă cale de a vedea Kotor, Perast și insulele.</div>
+        <div class="guide-item">Budva — la 30 min, plaje adriatice și oraș vechi, dacă vreți o zi de mare.</div>
+        <div class="guide-item">Promenada Dobrota — plimbare lină pe malul golfului, perfectă cu căruciorul, ruta de bază pentru plimbări cu bebelușul.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Njeguški pršut & sir</b> — prosciutto afumat și brânză din satul Njeguši.</span>
+          <span><b>Crni rižoto</b> — risotto negru cu cerneală de sepie.</span>
+          <span><b>Buzara</b> — scoici sau creveți în sos de vin alb și usturoi.</span>
+          <span><b>Riblja čorba</b> — supă de pește consistentă.</span>
+          <span><b>Krofne</b> — gogoși pufoase, pe placul copilului.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Muntenegru folosește euro, deși nu e în UE — comod pentru plăți.</div>
+        <div class="guide-know-item">Navele de croazieră aglomerează orașul vechi ziua (10–17). Vizitează-l dimineața devreme sau seara.</div>
+        <div class="guide-know-item">Scaunul auto pentru copil e obligatoriu prin lege.</div>
+        <div class="guide-know-item">Cazarea ta e în Muo — liniștită, cu vedere la golf, la câteva minute de centru.</div>
+      </div>
+      <div class="guide-baby"><b>Cu bebelușul:</b> orașul vechi e ok cu căruciorul doar înainte de ora 10, cât nu au coborât croazierele; fortăreața (1.350 trepte) las-o pe listă doar dacă vă schimbați cu rândul.</div>
+    </div>
+
+    <div id="subtab-dubrovnik" class="subtab-content">
+      <div class="guide-city-title">Dubrovnik</div>
+      <div class="guide-city-sub">Croația · perla Adriaticii · 22–24 sept · 2 nopți</div>
+      <div class="guide-intro">Un oraș-fortăreață de marmură albă, spălat de Adriatică, cu ziduri intacte de sute de ani. Spectaculos — și știut de toată lumea, inclusiv de fanii Game of Thrones.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Zidurile orașului</b> — plimbare de 2 km pe metereze, cu Adriatica de o parte și acoperișuri roșii de alta. Puțină umbră — pălării și apă obligatorii.</div>
+        <div class="guide-item"><b>Stradun</b> — strada principală de marmură lustruită, inima orașului vechi.</div>
+        <div class="guide-item"><b>Fortul Lovrijenac</b> — „Gibraltarul Dubrovnikului", pe o stâncă deasupra mării.</div>
+        <div class="guide-item"><b>Telefericul spre muntele Srđ</b> — panorama completă a orașului și insulelor.</div>
+        <div class="guide-item"><b>Palatul Rectorului & Catedrala</b> — arhitectură gotic-renascentistă.</div>
+        <div class="guide-item"><b>Tur Game of Thrones</b> — Pile Gate, Turnul Minčeta și alte locații de filmare; nu e potrivit cu căruciorul (trepte, alei înguste).</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Plaja Banje — cea mai apropiată de orașul vechi, cu vedere la ziduri.</div>
+        <div class="guide-item">Insula Lokrum — la 10 min cu vaporașul; păuni, grădini și golfuri liniștite.</div>
+        <div class="guide-item">Kayak sau tur cu barca — dacă lăsați bebelușul cu un părinte, o tură pe apă e memorabilă.</div>
+        <div class="guide-item">Plaje în Lapad — zona voastră de cazare, mai liniștită și family-friendly.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Črni rižot</b> — risotto negru cu sepie, clasic dalmat.</span>
+          <span><b>Peka</b> — carne sau caracatiță gătită lent sub clopot de fier (comandă-o din timp).</span>
+          <span><b>Oysters din Ston</b> — stridii proaspete din apropiere, renumite.</span>
+          <span><b>Rožata</b> — crema caramel dalmată, desertul local.</span>
+          <span><b>Vin Pošip / Plavac</b> — vinuri croate de calitate.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Croația e în UE și euro — CEASS-ul vostru funcționează aici.</div>
+        <div class="guide-know-item">E scump — cel mai scump oraș de pe traseu. Mănâncă în afara zidurilor pentru prețuri mai bune.</div>
+        <div class="guide-know-item">Orașul vechi e pietonal și plin de trepte — greu cu căruciorul, port-bebe recomandat.</div>
+        <div class="guide-know-item">Evită orele de vârf ale navelor de croazieră; mergi devreme dimineața.</div>
+      </div>
+      <div class="guide-baby"><b>Cu bebelușul:</b> la intrarea pe ziduri poți lăsa căruciorul (depozit disponibil) și continua cu port-bebe — turul complet durează ~2.5h, cu puțină umbră.</div>
+    </div>
+
+    <div id="subtab-mostar" class="subtab-content">
+      <div class="guide-city-title">Mostar</div>
+      <div class="guide-city-sub">Bosnia și Herțegovina · orașul podului · 24–25 sept · 1 noapte</div>
+      <div class="guide-intro">Un pod otoman în arc perfect peste un râu de un verde imposibil, reconstruit piatră cu piatră după război. Est și Vest se ating aici ca nicăieri altundeva.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Stari Most (Podul Vechi)</b> — capodopera otomană din 1566, reconstruită în 2004; simbolul orașului.</div>
+        <div class="guide-item"><b>War Photo Exhibition</b> — chiar în turnul vestic al podului; peste 50 de fotografii de război ale lui Wade Goddard.</div>
+        <div class="guide-item"><b>Bazarul Kujundžiluk</b> — strada veche cu pavaj, aramă bătută și covoare.</div>
+        <div class="guide-item"><b>Moscheea Koski Mehmed-Paša</b> — urcă în minaret pentru cea mai bună vedere spre pod.</div>
+        <div class="guide-item"><b>Casa turcească Bišćević</b> — casă otomană autentică, cu interior păstrat.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Privește săritorii de pe pod — localnicii sar de la 24 m în râul rece; o tradiție veche de secole.</div>
+        <div class="guide-item">Cafea bosniacă pe malul râului — servită tradițional, cu rahat și zahăr cubic.</div>
+        <div class="guide-item"><b>Blagaj Tekke</b> — mănăstire sufi pe izvorul râului Buna, ~14 min de Mostar; ținută modestă necesară (pantaloni lungi/umeri acoperiți, eșarfă pentru femei — se oferă la intrare).</div>
+        <div class="guide-item">Excursie la Kravice — cascade superbe la ~40 min, dacă aveți timp înainte de plecare.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Ćevapi</b> — mici de vită în lipie somun cu ceapă și kajmak; felul emblematic.</span>
+          <span><b>Burek</b> — plăcintă în spirală cu carne, adevărata rețetă bosniacă.</span>
+          <span><b>Dolma & japrak</b> — legume și foi umplute.</span>
+          <span><b>Cafea bosniacă</b> — ritual, nu doar băutură.</span>
+          <span><b>Baklava & tufahija</b> — dulciuri otomane; tufahija e măr umplut cu nucă.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Moneda e marca convertibilă (BAM); euro acceptat uneori, dar ai cash local.</div>
+        <div class="guide-know-item">Podul și bazarul au pavaj foarte alunecos și denivelat — încălțăminte bună, port-bebe mai practic decât căruciorul.</div>
+        <div class="guide-know-item">Orașul e mic, totul se face pe jos într-o după-amiază.</div>
+      </div>
+    </div>
+
+    <div id="subtab-sarajevo" class="subtab-content">
+      <div class="guide-city-title">Sarajevo</div>
+      <div class="guide-city-sub">Bosnia și Herțegovina · unde Estul și Vestul se întâlnesc · 25–26 sept · 1 noapte</div>
+      <div class="guide-intro">Un oraș unde poți sta cu un picior în Imperiul Otoman și cu altul în cel Austro-Ungar, pe aceeași stradă.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Baščaršija</b> — bazarul otoman din sec. XV, inima veche a orașului, cu fântâna Sebilj.</div>
+        <div class="guide-item"><b>„Sarajevo Meeting of Cultures"</b> — linia din pavaj unde arhitectura otomană devine brusc austro-ungară.</div>
+        <div class="guide-item"><b>Podul Latin</b> — locul asasinării arhiducelui Franz Ferdinand în 1914.</div>
+        <div class="guide-item"><b>Tunelul Speranței</b> — tunelul din timpul asediului, azi muzeu emoționant.</div>
+        <div class="guide-item"><b>Primăria (Vijećnica)</b> — clădire pseudo-maură superbă, restaurată.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item"><b>Parcul Vrelo Bosne</b> (Ilidža) — ~12 km de centru; parc pe malul unui izvor de râu, cu lebede, bărci, trăsuri. Se ajunge pe aleea Velika Aleja, un traseu plat, pavat și prietenos cu căruciorul de ~3.5 km (35-45 min pe jos) sau cu tramvaiul 3 până la capăt de linie — singurul loc cu adevărat lin din tot segmentul bosniac, bun de alternat cu o cafea în Baščaršija.</div>
+        <div class="guide-item">Trandafirii Sarajevo — urme de obuze umplute cu rășină roșie, memorial tăcut pe caldarâm.</div>
+        <div class="guide-item">Vedere de la fortul galben (Žuta Tabija) — apus peste oraș și minarete.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Ćevapi din Sarajevo</b> — considerați cei mai buni din Balcani; comandă-i în Baščaršija.</span>
+          <span><b>Begova čorba</b> — supă de pui „a beiului", groasă și bogată.</span>
+          <span><b>Dolma bosniacă</b> — legume umplute cu carne.</span>
+          <span><b>Bosanski lonac</b> — tocană tradițională gătită ore întregi.</span>
+          <span><b>Cafea + rahat lokum</b> — ritualul de încheiere a mesei.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Vei auzi chemarea la rugăciune și clopotele bisericilor în același timp — asta e Sarajevo.</div>
+        <div class="guide-know-item">Orașul e sigur și primitor; oamenii sunt calzi și obișnuiți cu turiștii.</div>
+        <div class="guide-know-item">Centrul e compact și plat — mai prietenos cu căruciorul decât Mostar sau Kotor.</div>
+      </div>
+    </div>
+
+    <div id="subtab-belgrad" class="subtab-content">
+      <div class="guide-city-title">Belgrad</div>
+      <div class="guide-city-sub">Serbia · orașul alb · 26–28 sept · 2 nopți</div>
+      <div class="guide-intro">Un oraș care a fost distrus și reconstruit de zeci de ori și care petrece ca și cum ar ști asta. Energic, neșlefuit, viu.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Fortăreața Kalemegdan</b> — cetate imensă și parc, la întâlnirea Savei cu Dunărea, inclusiv grădina zoologică mică; apusuri superbe, alei late și bune pentru cărucior.</div>
+        <div class="guide-item"><b>Knez Mihailova</b> — bulevardul pietonal cu clădiri elegante, magazine și cafenele.</div>
+        <div class="guide-item"><b>Templul Sf. Sava</b> — unul dintre cele mai mari lăcașuri ortodoxe din lume; interiorul cu mozaic e uluitor.</div>
+        <div class="guide-item"><b>Skadarlija</b> — cartierul boem cu pavaj, taverne (kafane) și muzică live.</div>
+        <div class="guide-item"><b>Muzeul Nikola Tesla</b> — dedicat marelui inventator; demonstrații electrice spectaculoase.</div>
+        <div class="guide-item"><b>Casa cu Flori (Muzeul Iugoslaviei)</b> — mausoleul lui Tito, unul din obiectivele de top ale orașului.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Cartierul Zemun & turnul Gardoš — fostul oraș austro-ungar, cu faleză pe Dunăre.</div>
+        <div class="guide-item">Splavovi — barurile/restaurantele plutitoare pe fluvii (ziua, cu familia, sunt relaxante).</div>
+        <div class="guide-item">Ada Ciganlija — „marea Belgradului", insulă-plajă pe lac, spații verzi întinse și loc de joacă pentru copii.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Ćevapi & pljeskavica</b> — mici și burgerul sârbesc, generoase.</span>
+          <span><b>Karađorđeva šnicla</b> — șnițel rulat umplut cu kajmak, „bucata doamnei".</span>
+          <span><b>Kajmak</b> — cremă de lapte densă, se pune pe pâine caldă.</span>
+          <span><b>Sarma</b> — sarmale sârbești, mai ales toamna.</span>
+          <span><b>Rakija</b> — țuica națională, din prune (šljivovica) sau alte fructe.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Moneda e dinarul sârbesc (RSD); cardul merge în oraș, cash pentru piețe.</div>
+        <div class="guide-know-item">Belgrad e foarte sigur, chiar și noaptea — una dintre capitalele cele mai relaxate.</div>
+        <div class="guide-know-item">Porțiile sunt uriașe și prețurile mici — un paradis pentru mâncare.</div>
+        <div class="guide-know-item">Cazarea ta e în Vračar, liniștită și centrală, la câteva minute de Sf. Sava.</div>
+      </div>
+      <div class="guide-baby"><b>Cu bebelușul:</b> facilități de schimbat scutecul sunt rare în restaurante — le găsești mai sigur în mall-uri sau la hotel; ia un prosop/pad de schimbat propriu.</div>
+    </div>
+
+    <div id="subtab-timisoara" class="subtab-content">
+      <div class="guide-city-title">Timișoara</div>
+      <div class="guide-city-sub">România · Mica Vienă · 28–30 sept · 2 nopți</div>
+      <div class="guide-intro">Acasă, dar încă în vacanță. Un oraș elegant de piețe baroce și fațade colorate — un loc bun să respiri înainte de ultimul drum.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Piața Unirii</b> — cea mai frumoasă piață barocă, cu catedrala catolică și cea sârbească față în față.</div>
+        <div class="guide-item"><b>Piața Victoriei</b> — de la Opera Națională la Catedrala Mitropolitană (cu acoperiș din mozaic), inima orașului.</div>
+        <div class="guide-item"><b>Piața Libertății</b> — cea mai veche dintre piețe, legată de celelalte.</div>
+        <div class="guide-item"><b>Cartierul Fabric</b> — clădiri secession restaurate, atmosferă boemă.</div>
+        <div class="guide-item"><b>Bastionul Theresia</b> — fortificație habsburgică, azi cu magazine și restaurante.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Plimbare pe malul Begăi — faleză amenajată, perfectă cu căruciorul; se poate și cu vaporașul.</div>
+        <div class="guide-item">Parcul Rozelor — loc de joacă mare, dar puțină umbră și fără toalete; pentru o vizită mai lungă cu bebelușul, Parcul Copiilor „Ion Creangă" e mai echipat.</div>
+        <div class="guide-item">Iulius Town — parc/zonă comercială modernă, bună variantă de seară sau dacă plouă.</div>
+        <div class="guide-item">Cafenele în Piața Unirii — orașul are o cultură a cafenelei excelentă.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Bucătărie bănățeană</b> — influențe germane, maghiare și sârbești; porții consistente.</span>
+          <span><b>Gulaș & papricaș</b> — moștenire habsburgică, gătite ca acasă.</span>
+          <span><b>Prăjituri vieneze</b> — cofetăriile din centru păstrează tradiția.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Ești acasă — RON, limbă cunoscută, sistem medical de încredere. Relaxare totală.</div>
+        <div class="guide-know-item">Centrul e pietonal, plat și prietenos cu căruciorul — cel mai ușor oraș de pe traseu.</div>
+        <div class="guide-know-item">Două nopți dau timp să te odihnești bine înainte de ultimele ~5–6 ore de drum.</div>
+      </div>
+    </div>
+
+    <div id="subtab-sibiu" class="subtab-content">
+      <div class="guide-city-title">Sibiu</div>
+      <div class="guide-city-sub">România · inima Transilvaniei săsești · 30 sept – 1 oct · 1 noapte</div>
+      <div class="guide-intro">Ultima oprire, și una dintre cele mai fermecătoare. Un oraș medieval săsesc cu piețe pastelate și case ale căror lucarne te privesc ca niște ochi somnoroși de pe acoperișuri.</div>
+      <div class="guide-block">
+        <span class="guide-label">De văzut</span>
+        <div class="guide-item"><b>Piața Mare</b> — inima orașului vechi, înconjurată de case colorate și Palatul Brukenthal.</div>
+        <div class="guide-item"><b>Muzeul Brukenthal</b> — cel mai vechi muzeu din România (1817), colecție europeană importantă (Titian, Rubens, Grigorescu), chiar în Piața Mare.</div>
+        <div class="guide-item"><b>Piața Mică & Podul Minciunilor</b> — primul pod de fontă din România, cu legenda lui.</div>
+        <div class="guide-item"><b>„Ochii Sibiului"</b> — lucarnele-ochi de pe acoperișuri, semnătura vizuală a orașului.</div>
+        <div class="guide-item"><b>Turnul Sfatului</b> — urcă pentru panorama peste acoperișurile roșii și Munții Făgăraș.</div>
+        <div class="guide-item"><b>Catedrala Evanghelică</b> — gotică, cu cea mai mare orgă din România.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De făcut</span>
+        <div class="guide-item">Muzeul ASTRA — muzeu în aer liber superb, cu case tradiționale; e întins pe 10 km, cu un bebeluș vizitați doar o parte, nu tot traseul.</div>
+        <div class="guide-item">Plimbare pe Strada Cetății & ziduri — turnurile breslelor, atmosferă medievală.</div>
+        <div class="guide-item">Pădurea Dumbrava & Grădina Zoologică — sunt vecine cu ASTRA, se pot combina într-o singură ieșire dacă vremea ține.</div>
+      </div>
+      <div class="guide-block">
+        <span class="guide-label">De gustat</span>
+        <div class="guide-food">
+          <span><b>Bucătărie săsească & ardelenească</b> — consistentă, cu influențe germane.</span>
+          <span><b>Bulz & ciorbă ardelenească</b> — mâncare de munte, reconfortantă.</span>
+          <span><b>Cârnați de Sibiu</b> — produsul care a făcut orașul faimos.</span>
+        </div>
+      </div>
+      <div class="guide-know">
+        <span class="guide-label">De știut</span>
+        <div class="guide-know-item">Centrul e compact și frumos iluminat seara — perfect pentru ultima plimbare a vacanței.</div>
+        <div class="guide-know-item">De aici la București sunt ~4 ore prin Valea Oltului, cu peisaj superb.</div>
+        <div class="guide-know-item">Cazarea aici încă e de rezervat — caută în Orașul de Sus, centrul istoric.</div>
+      </div>
     </div>
   </div>
 
@@ -660,7 +1143,7 @@
       <p class="phase-title">Faza ÎN TIMPUL (5 sept – 1 oct 2026) — serialul</p>
       <ul class="plan-list">
         <li>1-2 clipuri/zi, dozat — filmăm mult, publicăm sustenabil, păstrăm rezervă pentru zilele grele de drum.</li>
-        <li>Toroni (7 nopți) e fereastra de „batch filming": filmăm 8-12 clipuri rezervă pentru partea rapidă a traseului.</li>
+        <li>Nikiti (7 nopți) e fereastra de „batch filming": filmăm 8-12 clipuri rezervă pentru partea rapidă a traseului.</li>
         <li>Zilele fără roaming UE (MK, AL, ME, BA, RS): filmăm normal, publicăm pe eSIM local sau amânăm uploadul masiv pentru Dubrovnik/Timișoara.</li>
       </ul>
       <p class="phase-title">Faza POST (octombrie 2026+) — recap</p>
@@ -682,7 +1165,7 @@
       <table class="plan-table">
         <tr><th>Zile</th><th>Oprire</th><th>Idee de episod</th></tr>
         <tr><td>1</td><td>Sofia</td><td>„Ziua 1: am plecat." — lansarea serialului, prima graniță</td></tr>
-        <tr><td>2-8</td><td>Toroni</td><td>„Prima baie a lui Aris la mare" + batch filming pentru rezervă</td></tr>
+        <tr><td>2-8</td><td>Nikiti</td><td>„Prima baie a lui Aris la mare" + batch filming pentru rezervă</td></tr>
         <tr><td>9-11</td><td>Ohrid</td><td>„Nimeni nu vine aici — și greșesc", lacul, cost mic</td></tr>
         <tr><td>12-13</td><td>Berat</td><td>„Albania e cash-only. Am aflat pe pielea noastră." + Green Card</td></tr>
         <tr><td>14</td><td>Shkodër</td><td>„Ce nu-ți spune nimeni despre drumurile din Albania cu bebe"</td></tr>
@@ -700,25 +1183,57 @@
       <ul class="plan-list">
         <li>„Toată lumea ne-a zis că nu mai poți călători după copil. Suntem în ziua [X] prin Balcani cu Aris." / "They said you can't travel after having a baby."</li>
         <li>„Ce am pus în mașină ca să supraviețuim orele de condus cu un copil de 1 an." / "What we packed to survive hours of driving with a 1-year-old."</li>
+        <li>„26 de zile, 9 țări, un bebeluș de 1 an. Iată cum am supraviețuit." / "26 days, 9 countries, one 1-year-old. Here's how we survived."</li>
+        <li>„Ce NU îți spune nimeni despre somnul bebelușului în vacanță." / "What nobody tells you about baby sleep on a road trip."</li>
+        <li>„3 lucruri pe care le-am învățat prea târziu." / "3 things we learned too late."</li>
       </ul>
       <p class="plan-p"><b>P2 — Descoperire Balcani</b></p>
       <ul class="plan-list">
         <li>„Nu-ți vine să crezi că asta e Albania. E subestimată rău." / "You won't believe this is Albania."</li>
         <li>„Muntenegru arată ca Croația de acum 20 de ani, la o fracțiune din preț." / "Montenegro looks like Croatia 20 years ago."</li>
+        <li>„Am trecut prin 9 țări în 26 de zile. Asta ne-a surprins cel mai mult." / "We crossed 9 countries in 26 days. This surprised us most."</li>
+        <li>„Locul ăsta nu e pe nicio listă de Instagram. Ar trebui." / "This place isn't on any Instagram list. It should be."</li>
+        <li>„Aveam așteptări mici. Ne-a plăcut mai mult decât ne așteptam." / "We had low expectations. We liked it way more."</li>
       </ul>
       <p class="plan-p"><b>P3 — Cost/practic</b></p>
       <ul class="plan-list">
         <li>„Cât ne-a costat o zi întreagă în Albania, cu tot cu bebe." / "What one day in Albania cost us — with a baby."</li>
         <li>„Albania e cash-only. Am aflat pe pielea noastră." / "Albania is cash only. We learned the hard way."</li>
+        <li>„Comparăm 9 țări: unde am cheltuit cel mai puțin pe o zi de familie." / "Comparing 9 countries: where we spent the least in a day."</li>
+        <li>„O cafea aici costă cât în România? Nu ce credeai." / "Coffee here costs the same as in Romania? Not what you'd think."</li>
+        <li>„Cel mai scump vs cel mai ieftin oraș din tot traseul." / "Most expensive vs cheapest city on the route."</li>
       </ul>
       <p class="plan-p"><b>P4 — Real/emoțional</b> (cu grijă, fără spectacol pe seama lui Aris)</p>
       <ul class="plan-list">
         <li>„Un cuplu, un bebeluș, o mașină, 26 de zile. Ce ne-a învățat asta." / "One couple, one baby, one car, 26 days."</li>
         <li>„Cum reacționează balcanicii când văd un bebeluș." / "How Balkan locals react to a baby."</li>
+        <li>„Nimeni nu ne-a zis cât de greu e cu adevărat prima săptămână." / "Nobody told us how hard the first week really is."</li>
+        <li>„Ce am învățat unul despre celălalt după 26 de zile în aceeași mașină." / "What we learned about each other after 26 days in the same car."</li>
       </ul>
       <p class="plan-p"><b>P5 — Serial (hook de revenire)</b></p>
       <ul class="plan-list">
         <li>„Ziua [X] din 26. Notăm fiecare țară pentru părinți, de la 1 la 10." / "Day [X] of 26. Scoring every country for parents."</li>
+        <li>„Scorul de azi: [țară] — X/10. De ce?" / "Today's score: [country] — X/10. Here's why."</li>
+        <li>„Am ajuns la jumătate. Iată clasamentul până acum." / "Halfway through. Here's the ranking so far."</li>
+        <li>„Ghiciți ce țară a luat scorul cel mai mic." / "Guess which country scored lowest."</li>
+      </ul>
+
+      <p class="plan-h3">Cum facem comparația de costuri (P3)</p>
+      <ul class="plan-list">
+        <li><b>3 repere fixe, urmărite identic în fiecare țară</b> — altfel nu sunt comparabile: cazare/noapte (îl aveți deja din rezervări), o masă la restaurant pentru 2 adulți, o cafea.</li>
+        <li>Notați-le zilnic, 30 de secunde într-un notes pe telefon — fără acest jurnal minim, nu aveți date pentru montaj la finalul fiecărei țări.</li>
+        <li>În clip: aceleași 3 numere, în același loc pe ecran de fiecare dată (text overlay CapCut, template fix) — recognoscibil, parte din franciza vizuală.</li>
+        <li>Ancorați fiecare preț de un reper cunoscut publicului („= cât un prânz în București") ca privitorul să simtă valoarea, nu doar cifra goală.</li>
+        <li>Episodul-concluzie (Sibiu): un singur clip recapitulativ cu toate cele 9 țări alături — cel mai scump vs cel mai ieftin.</li>
+      </ul>
+
+      <p class="plan-h3">Cum facem scoreboard-ul (P5)</p>
+      <ul class="plan-list">
+        <li><b>5 categorii fixe, 1-10, aceleași la fiecare țară</b> — ca să fie comparabile: somn (Aris), mâncare, cost, drum, prietenos.</li>
+        <li>Se decid pe cameră, scurt (15-20s), fiecare părinte zice un număr — gen de conținut care atrage comentarii („voi ce scor ați da?").</li>
+        <li>Vizual: card grafic simplu — numele țării + cele 5 numere — același template CapCut repetat de fiecare dată.</li>
+        <li>La fiecare 2-3 țări, arătați rapid clasamentul de până atunci — motiv de revenire pe cont (retenție serial).</li>
+        <li>Episodul final (Sibiu) = marele clasament, toate cele 9 țări ordonate de la cea mai bună la cea mai grea experiență.</li>
       </ul>
     </div>
 
@@ -802,7 +1317,7 @@ initTiktokVisibility();
 const stops = [
   { name: "București (Plecare)", lat: 44.4268, lng: 26.1025, color: "#a13d2e", info: "Plecare 5 sept", type: "home" },
   { name: "Sofia", lat: 42.6668, lng: 23.3502, color: "#5c6b3f", info: "5-6 sept · 577 lei", type: "pause" },
-  { name: "Toroni", lat: 39.9854, lng: 23.9106, color: "#a1592e", info: "6-13 sept · 4.693 lei", type: "main" },
+  { name: "Nikiti", lat: 40.2220, lng: 23.6678, color: "#a1592e", info: "6-13 sept · 5.285 lei", type: "main" },
   { name: "Ohrid", lat: 41.1092, lng: 20.8090, color: "#a1592e", info: "13-16 sept · 806 lei", type: "main" },
   { name: "Berat", lat: 40.7047, lng: 19.9532, color: "#a1592e", info: "16-18 sept · 596 lei", type: "main" },
   { name: "Shkodër", lat: 42.0629, lng: 19.5156, color: "#2d4159", info: "18-19 sept · 352 lei", type: "pause" },
